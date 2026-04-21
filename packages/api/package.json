@@ -1,5 +1,5 @@
 {
-  "name": "@byndesh/api",
+  "name": "@beyndesh/api",
   "version": "0.0.0",
   "private": true,
   "main": "./src/index.ts",
@@ -10,8 +10,8 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@byndesh/database": "workspace:*",
-    "@byndesh/shared": "workspace:*"
+    "@beyndesh/database": "workspace:*",
+    "@beyndesh/shared": "workspace:*"
   },
   "devDependencies": {
     "typescript": "^5"

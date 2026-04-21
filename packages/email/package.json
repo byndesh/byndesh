@@ -1,5 +1,5 @@
 {
-  "name": "@byndesh/email",
+  "name": "@beyndesh/email",
   "version": "0.0.0",
   "private": true,
   "main": "./src/index.ts",

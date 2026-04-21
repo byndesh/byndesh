@@ -112,10 +112,10 @@ importers:
 
   packages/api:
     dependencies:
-      '@byndesh/database':
+      '@beyndesh/database':
         specifier: workspace:*
         version: link:../database
-      '@byndesh/shared':
+      '@beyndesh/shared':
         specifier: workspace:*
         version: link:../shared
     devDependencies:
@@ -144,9 +144,21 @@ importers:
         specifier: ^5.14.0
         version: 5.22.0(prisma@5.22.0)
     devDependencies:
+      '@beyndesh/config':
+        specifier: workspace:*
+        version: link:../config
+      '@types/node':
+        specifier: ^20.19.39
+        version: 20.19.39
       prisma:
         specifier: ^5.14.0
         version: 5.22.0
+      tsx:
+        specifier: ^4.7.2
+        version: 4.21.0
+      typescript:
+        specifier: ^5
+        version: 5.9.3
 
   packages/email:
     dependencies:
@@ -2714,6 +2726,11 @@ packages:
 
   tslib@2.8.1:
     resolution: {integrity: sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==}
+
+  tsx@4.21.0:
+    resolution: {integrity: sha512-5C1sg4USs1lfG0GFb2RLXsdpXqBSEhAaA/0kPL01wxzpMqLILNxIxIOKiILz+cdg/pLnOUxFYOR5yhHU666wbw==}
+    engines: {node: '>=18.0.0'}
+    hasBin: true
 
   turbo@2.9.6:
     resolution: {integrity: sha512-+v2QJey7ZUeUiuigkU+uFfklvNUyPI2VO2vBpMYJA+a1hKFLFiKtUYlRHdb3P9CrAvMzi0upbjI4WT+zKtqkBg==}
@@ -5526,6 +5543,13 @@ snapshots:
       strip-bom: 3.0.0
 
   tslib@2.8.1: {}
+
+  tsx@4.21.0:
+    dependencies:
+      esbuild: 0.27.5
+      get-tsconfig: 4.14.0
+    optionalDependencies:
+      fsevents: 2.3.3
 
   turbo@2.9.6:
     optionalDependencies:

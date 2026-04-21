@@ -1,18 +1,26 @@
 {
-  "name": "@byndesh/database",
+  "name": "@beyndesh/database",
   "version": "0.0.0",
   "private": true,
   "main": "./src/index.ts",
   "types": "./src/index.ts",
   "scripts": {
-    "db:push": "prisma db push",
-    "db:studio": "prisma studio",
-    "generate": "prisma generate"
+    "generate": "prisma generate",
+    "migrate:dev": "prisma migrate dev",
+    "migrate:deploy": "prisma migrate deploy",
+    "push": "prisma db push",
+    "seed": "tsx prisma/seed.ts",
+    "studio": "prisma studio",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@prisma/client": "^5.14.0"
   },
   "devDependencies": {
-    "prisma": "^5.14.0"
+    "@beyndesh/config": "workspace:*",
+    "@types/node": "^20.19.39",
+    "prisma": "^5.14.0",
+    "tsx": "^4.7.2",
+    "typescript": "^5"
   }
 }
