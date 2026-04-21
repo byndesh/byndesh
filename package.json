@@ -2,10 +2,17 @@
   "name": "byndesh-monorepo",
   "private": true,
   "scripts": {
-    "build": "turbo build",
     "dev": "turbo dev",
+    "dev:web": "turbo dev --filter=@beyndesh/web",
+    "dev:cms": "turbo dev --filter=@beyndesh/cms",
+    "build": "turbo build",
     "lint": "turbo lint",
     "typecheck": "turbo typecheck",
+    "db:generate": "pnpm --filter @beyndesh/database prisma generate",
+    "db:push": "pnpm --filter @beyndesh/database prisma db push",
+    "db:seed": "pnpm --filter @beyndesh/database prisma db seed",
+    "db:studio": "pnpm --filter @beyndesh/database prisma studio",
+    "clean": "turbo clean && rm -rf node_modules",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {

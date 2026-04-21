@@ -1,7 +1,42 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import { Lock, Mail } from "lucide-react";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
+  const router = useRouter();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setError("");
+
+    try {
+      const result = await signIn("credentials", {
+        redirect: false,
+        email,
+        password,
+      });
+
+      if (result?.error) {
+        setError("Invalid email or password");
+      } else {
+        router.push("/dashboard");
+        router.refresh();
+      }
+    } catch (err) {
+      setError("An unexpected error occurred.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-bynd-paper flex items-center justify-center p-4">
       <div className="w-full max-w-md">
@@ -15,9 +50,15 @@ export default function LoginPage() {
           </p>
         </div>
 
-        {/* Form Placeholder */}
+        {/* Login Form */}
         <div className="bg-white border border-gray-200 shadow-xl rounded-2xl p-8">
-          <form className="space-y-6">
+          <form className="space-y-6" onSubmit={handleSubmit}>
+            {error && (
+              <div className="p-3 text-sm text-red-500 bg-red-50 border border-red-100 rounded-lg text-center font-medium">
+                {error}
+              </div>
+            )}
+            
             <div>
               <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">
                 Email Address
@@ -28,6 +69,10 @@ export default function LoginPage() {
                 </div>
                 <input
                   type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  disabled={loading}
+                  required
                   className="block w-full pl-10 pr-3 py-3 border border-gray-200 rounded-xl focus:ring-bynd-orange focus:border-bynd-orange text-sm transition-all bg-gray-50 focus:bg-white"
                   placeholder="admin@beyndesh.com"
                 />
@@ -44,6 +89,10 @@ export default function LoginPage() {
                 </div>
                 <input
                   type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  disabled={loading}
+                  required
                   className="block w-full pl-10 pr-3 py-3 border border-gray-200 rounded-xl focus:ring-bynd-orange focus:border-bynd-orange text-sm transition-all bg-gray-50 focus:bg-white"
                   placeholder="••••••••"
                 />
@@ -51,10 +100,11 @@ export default function LoginPage() {
             </div>
 
             <button
-              type="button"
-              className="w-full bg-bynd-black text-white py-4 rounded-xl font-heading tracking-widest text-sm hover:bg-black transition-colors shadow-lg active:scale-[0.98]"
+              type="submit"
+              disabled={loading}
+              className="w-full bg-bynd-black text-white py-4 rounded-xl font-heading tracking-widest text-sm hover:bg-black transition-colors shadow-lg active:scale-[0.98] disabled:opacity-70"
             >
-              SIGN IN
+              {loading ? "AUTHENTICATING..." : "SIGN IN"}
             </button>
           </form>
 
