@@ -1,0 +1,18 @@
+# Beyndesh AI Discoverability File
+# https://llmstxt.org
+
+# Beyndesh — Premium Adventure Travel (Bangladesh)
+# https://beyndesh.com
+
+## About
+Beyndesh (বেয়ন্দেশ) is a premium adventure travel company based in Bangladesh,
+offering curated expedition packages to the Sundarbans, Chittagong Hill Tracts,
+Cox's Bazar, and beyond. All trips include expert guides, sustainable practices,
+and bilingual (English/Bangla) support.
+
+## Key Pages
+- Trips: https://beyndesh.com/trips
+- Destinations: https://beyndesh.com/destinations
+- About: https://beyndesh.com/about
+- Contact: https://beyndesh.com/contact
+- Book: https://beyndesh.com/book
