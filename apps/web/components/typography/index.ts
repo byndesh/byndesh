@@ -1,0 +1,9 @@
+export { default as HeadingPrimary } from './HeadingPrimary';
+export { default as HeadingSecondary } from './HeadingSecondary';
+export { default as BodyText } from './BodyText';
+export { default as SignatureAccent } from './SignatureAccent';
+export { default as LogoText } from './LogoText';
+export { default as BlockQuote } from './BlockQuote';
+export { default as Highlight } from './Highlight';
+export { default as Caption } from './Caption';
+export { default as LegalText } from './LegalText';
