@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 const titillium = Titillium_Web({
   subsets: ["latin"],
   weight: ["400", "700", "900"],
-  variable: "--font-titillium",
+  variable: "--font-titillium-web",
 });
 
 const inter = Inter({

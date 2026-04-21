@@ -2,12 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --background: #FFFFFF;
+  --foreground: #1D1D1B;
+}
+
 @layer base {
   body {
-    @apply bg-gray-50 text-gray-900 font-body antialiased selection:bg-bynd-orange selection:text-white;
+    @apply bg-white text-bynd-black antialiased;
+    font-feature-settings: "ss01", "ss02", "cv01", "cv02";
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-heading uppercase tracking-tight;
+    @apply font-heading uppercase tracking-wider;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-bynd-orange text-white px-6 py-3 font-heading uppercase tracking-wider hover:bg-bynd-black transition-colors duration-300 disabled:opacity-50;
   }
 }
