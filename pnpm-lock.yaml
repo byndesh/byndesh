@@ -14,16 +14,58 @@ importers:
 
   apps/cms:
     dependencies:
+      '@beyndesh/api':
+        specifier: workspace:*
+        version: link:../../packages/api
+      '@beyndesh/database':
+        specifier: workspace:*
+        version: link:../../packages/database
+      '@beyndesh/shared':
+        specifier: workspace:*
+        version: link:../../packages/shared
+      '@hookform/resolvers':
+        specifier: ^3.3.4
+        version: 3.10.0(react-hook-form@7.73.1(react@18.3.1))
+      clsx:
+        specifier: ^2.1.1
+        version: 2.1.1
+      framer-motion:
+        specifier: ^11.0.0
+        version: 11.18.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      lucide-react:
+        specifier: ^0.473.0
+        version: 0.473.0(react@18.3.1)
       next:
-        specifier: ^14.2.0
+        specifier: ^14.2.35
         version: 14.2.35(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      next-auth:
+        specifier: 5.0.0-beta.25
+        version: 5.0.0-beta.25(next@14.2.35(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
+      nuqs:
+        specifier: ^1.17.0
+        version: 1.20.0(next@14.2.35(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
       react:
-        specifier: ^18.2.0
+        specifier: ^18.3.1
         version: 18.3.1
       react-dom:
-        specifier: ^18.2.0
+        specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
+      react-hook-form:
+        specifier: ^7.51.0
+        version: 7.73.1(react@18.3.1)
+      tailwind-merge:
+        specifier: ^2.3.0
+        version: 2.6.1
+      zod:
+        specifier: ^3.23.0
+        version: 3.25.76
+      zustand:
+        specifier: ^4.5.0
+        version: 4.5.7(@types/react@18.3.28)(react@18.3.1)
     devDependencies:
+      '@beyndesh/config':
+        specifier: workspace:*
+        version: link:../../packages/config
       '@types/node':
         specifier: ^20
         version: 20.19.39
@@ -33,6 +75,15 @@ importers:
       '@types/react-dom':
         specifier: ^18
         version: 18.3.7(@types/react@18.3.28)
+      autoprefixer:
+        specifier: ^10.4.19
+        version: 10.5.0(postcss@8.5.10)
+      postcss:
+        specifier: ^8.4.38
+        version: 8.5.10
+      tailwindcss:
+        specifier: 3.4.1
+        version: 3.4.1
       typescript:
         specifier: ^5
         version: 5.9.3
