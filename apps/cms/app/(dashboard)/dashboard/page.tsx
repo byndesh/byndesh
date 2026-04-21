@@ -7,6 +7,12 @@ import {
   ArrowUpRight 
 } from "lucide-react";
 
+/**
+ * Strategy: SSR — force-dynamic.
+ * CMS pages always serve fresh data. No caching.
+ */
+export const dynamic = 'force-dynamic';
+
 export default function DashboardPage() {
   const stats = [
     { label: "Active Trips", value: "12", icon: Map, color: "text-blue-600", bg: "bg-blue-50", trend: "+2 this month" },

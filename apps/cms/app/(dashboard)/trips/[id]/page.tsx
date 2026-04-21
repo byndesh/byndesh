@@ -2,15 +2,23 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = { title: 'Edit Trip | Beyndesh CMS' };
 
+/**
+ * Strategy: SSR — force-dynamic. CMS pages are always fresh, always authenticated.
+ */
 export const dynamic = 'force-dynamic';
 
-export default function CmsEditTripPage() {
+interface Props { params: Promise<{ id: string }> }
+
+export default async function EditTripPage({ params }: Props) {
+  const { id } = await params;
   return (
     <div className="p-8">
-      <h1 className="font-heading text-2xl font-bold uppercase text-gray-900 mb-6">Edit Trip</h1>
-      {/* TODO: implement Edit Trip CMS page */}
+      <h1 className="font-heading text-2xl font-bold uppercase text-gray-900 mb-6">
+        Edit Trip
+      </h1>
+      {/* TODO: fetch trip by id and render TripForm */}
       <div className="rounded-xl border border-gray-200 bg-white p-8 text-center text-gray-400">
-        Coming soon
+        Trip ID: {id} — Form coming soon
       </div>
     </div>
   );
