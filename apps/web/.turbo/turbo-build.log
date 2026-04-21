@@ -1,71 +1,13 @@
 
-> web@0.1.0 build G:\Antigravity\Byndesh\apps\web
+> @beyndesh/web@0.1.0 build G:\Antigravity\Byndesh\apps\web
 > next build
 
-  ▲ Next.js 14.2.35
-  - Environments: .env.local
 
-   Creating an optimized production build ...
-<w> [webpack.cache.PackFileCacheStrategy] Skipped not serializable cache item 'Compilation/modules|G:\Antigravity\Byndesh\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\build\webpack\loaders\css-loader\src\index.js??ruleSet[1].rules[14].oneOf[12].use[2]!G:\Antigravity\Byndesh\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\build\webpack\loaders\postcss-loader\src\index.js??ruleSet[1].rules[14].oneOf[12].use[3]!G:\Antigravity\Byndesh\apps\web\src\app\globals.css': No serializer registered for PostCSSSyntaxError
-<w> while serializing webpack/lib/cache/PackFileCacheStrategy.PackContentItems -> webpack/lib/NormalModule -> webpack/lib/ModuleBuildError -> PostCSSSyntaxError
-Failed to compile.
-
-./src/app/globals.css:14:3
-Syntax error: G:\Antigravity\Byndesh\apps\web\src\app\globals.css The `bg-paper` class does not exist. If `bg-paper` is a custom class, make sure it is defined within a `@layer` directive.
-
- [90m 12 | [39m
- [90m 13 | [39mbody [33m{[39m
-[1m[31m>[39m[22m[90m 14 | [39m  [36m@apply[39m bg-paper text-black font-body[33m;[39m
- [90m    | [39m  [1m[31m^[39m[22m
- [90m 15 | [39m[33m}[39m
- [90m 16 | [39m
-
-./src/app/globals.css
-Syntax error: G:\Antigravity\Byndesh\apps\web\src\app\globals.css The `bg-paper` class does not exist. If `bg-paper` is a custom class, make sure it is defined within a `@layer` directive. (14:3)
-
- [90m 12 | [39m
- [90m 13 | [39mbody [33m{[39m
-[1m[31m>[39m[22m[90m 14 | [39m  [36m@apply[39m bg-paper text-black font-body[33m;[39m
- [90m    | [39m  [1m[31m^[39m[22m
- [90m 15 | [39m[33m}[39m
- [90m 16 | [39m
-
-    at tryRunOrWebpackError (G:\Antigravity\Byndesh\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\webpack\bundle5.js:28:312989)
-    at __webpack_require_module__ (G:\Antigravity\Byndesh\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\webpack\bundle5.js:28:131165)
-    at __nested_webpack_require_153728__ (G:\Antigravity\Byndesh\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\webpack\bundle5.js:28:130607)
-    at G:\Antigravity\Byndesh\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\webpack\bundle5.js:28:131454
-    at symbolIterator (G:\Antigravity\Byndesh\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\neo-async\async.js:1:14444)
-    at done (G:\Antigravity\Byndesh\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\neo-async\async.js:1:14824)
-    at Hook.eval [as callAsync] (eval at create (G:\Antigravity\Byndesh\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\webpack\bundle5.js:13:28858), <anonymous>:15:1)
-    at Hook.CALL_ASYNC_DELEGATE [as _callAsync] (G:\Antigravity\Byndesh\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\webpack\bundle5.js:13:26012)
-    at G:\Antigravity\Byndesh\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\webpack\bundle5.js:28:130328
-    at symbolIterator (G:\Antigravity\Byndesh\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\neo-async\async.js:1:14402)
--- inner error --
-Syntax error: G:\Antigravity\Byndesh\apps\web\src\app\globals.css The `bg-paper` class does not exist. If `bg-paper` is a custom class, make sure it is defined within a `@layer` directive. (14:3)
-
- [90m 12 | [39m
- [90m 13 | [39mbody [33m{[39m
-[1m[31m>[39m[22m[90m 14 | [39m  [36m@apply[39m bg-paper text-black font-body[33m;[39m
- [90m    | [39m  [1m[31m^[39m[22m
- [90m 15 | [39m[33m}[39m
- [90m 16 | [39m
-
-    at Object.<anonymous> (G:\Antigravity\Byndesh\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\build\webpack\loaders\css-loader\src\index.js??ruleSet[1].rules[14].oneOf[12].use[2]!G:\Antigravity\Byndesh\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\build\webpack\loaders\postcss-loader\src\index.js??ruleSet[1].rules[14].oneOf[12].use[3]!G:\Antigravity\Byndesh\apps\web\src\app\globals.css:1:7)
-    at G:\Antigravity\Byndesh\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\webpack\bundle5.js:28:922493
-    at Hook.eval [as call] (eval at create (G:\Antigravity\Byndesh\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\webpack\bundle5.js:13:28636), <anonymous>:7:1)
-    at Hook.CALL_DELEGATE [as _call] (G:\Antigravity\Byndesh\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\webpack\bundle5.js:13:25906)
-    at G:\Antigravity\Byndesh\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\webpack\bundle5.js:28:131198
-    at tryRunOrWebpackError (G:\Antigravity\Byndesh\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\webpack\bundle5.js:28:312943)
-    at __webpack_require_module__ (G:\Antigravity\Byndesh\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\webpack\bundle5.js:28:131165)
-    at __nested_webpack_require_153728__ (G:\Antigravity\Byndesh\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\webpack\bundle5.js:28:130607)
-    at G:\Antigravity\Byndesh\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\webpack\bundle5.js:28:131454
-    at symbolIterator (G:\Antigravity\Byndesh\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\compiled\neo-async\async.js:1:14444)
-
-Generated code for G:\Antigravity\Byndesh\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\build\webpack\loaders\css-loader\src\index.js??ruleSet[1].rules[14].oneOf[12].use[2]!G:\Antigravity\Byndesh\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\build\webpack\loaders\postcss-loader\src\index.js??ruleSet[1].rules[14].oneOf[12].use[3]!G:\Antigravity\Byndesh\apps\web\src\app\globals.css
-
-Import trace for requested module:
-./src/app/globals.css
-
-
-> Build failed because of webpack errors
+> Build error occurred
+Error: Configuring Next.js via 'next.config.ts' is not supported. Please replace the file with 'next.config.js' or 'next.config.mjs'.
+    at loadConfig (G:\Antigravity\Byndesh\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\server\config.js:800:19)
+    at async Span.traceAsyncFn (G:\Antigravity\Byndesh\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\trace\trace.js:154:20)
+    at async G:\Antigravity\Byndesh\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\build\index.js:374:28
+    at async Span.traceAsyncFn (G:\Antigravity\Byndesh\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\trace\trace.js:154:20)
+    at async build (G:\Antigravity\Byndesh\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\build\index.js:368:9)
  ELIFECYCLE  Command failed with exit code 1.
