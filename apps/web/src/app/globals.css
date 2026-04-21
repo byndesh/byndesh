@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 60 15% 94%; /* #F4F3E6 - Paper */
+    --foreground: 0 0% 11%;   /* #1D1D1B - Black */
+    --primary: 20 100% 53%;   /* #FF5F0F - Orange */
+  }
+}
+
+body {
+  @apply bg-paper text-black font-body;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @apply font-heading uppercase;
+}

@@ -1,0 +1,9 @@
+{
+  "name": "@byndesh/tailwind-config",
+  "version": "0.0.0",
+  "private": true,
+  "main": "preset.js",
+  "devDependencies": {
+    "tailwindcss": "3.4.1"
+  }
+}

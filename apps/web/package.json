@@ -1,0 +1,38 @@
+{
+  "name": "web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@fontsource/hubot-sans": "^5.2.8",
+    "@fontsource/lavishly-yours": "^5.2.8",
+    "@fontsource/titillium-web": "^5.2.8",
+    "@supabase/ssr": "^0.5.2",
+    "@supabase/supabase-js": "^2.49.1",
+    "framer-motion": "^11.0.0",
+    "lucide-react": "^0.473.0",
+    "next": "^14.2.0",
+    "next-auth": "5.0.0-beta.25",
+    "nuqs": "^1.17.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.51.0",
+    "zod": "^3.23.0",
+    "zustand": "^4.5.0"
+  },
+  "devDependencies": {
+    "@byndesh/tailwind-config": "workspace:*",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.38",
+    "tailwindcss": "3.4.1",
+    "typescript": "^5"
+  }
+}
