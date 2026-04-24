@@ -25,12 +25,12 @@ export default function DashboardPage() {
     <div className="space-y-8">
       <div>
         <h1 className="text-2xl font-bold text-gray-900 mb-2 font-heading">Dashboard Overview</h1>
-        <p className="text-gray-500">Welcome back! Here's what's happening with Beyndesh today.</p>
+        <p className="text-bynd-ash">Welcome back! Here's what's happening with Beyndesh today.</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {stats.map((stat) => (
-          <div key={stat.label} className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+          <div key={stat.label} className="bg-white p-6 rounded-2xl border border-bynd-cream shadow-sm hover:shadow-md transition-shadow">
             <div className="flex items-start justify-between mb-4">
               <div className={`p-3 rounded-xl ${stat.bg} ${stat.color}`}>
                 <stat.icon className="w-6 h-6" />
@@ -41,19 +41,19 @@ export default function DashboardPage() {
               </div>
             </div>
             <div>
-              <p className="text-sm font-medium text-gray-500 mb-1">{stat.label}</p>
+              <p className="text-sm font-medium text-bynd-ash mb-1">{stat.label}</p>
               <h2 className="text-3xl font-bold text-gray-900">{stat.value}</h2>
-              <p className="text-xs text-gray-400 mt-2">{stat.trend}</p>
+              <p className="text-xs text-bynd-ash mt-2">{stat.trend}</p>
             </div>
           </div>
         ))}
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <div className="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm h-64 flex items-center justify-center text-gray-400 italic">
+        <div className="bg-white p-8 rounded-2xl border border-bynd-cream shadow-sm h-64 flex items-center justify-center text-bynd-ash italic">
           Revenue Chart Placeholder
         </div>
-        <div className="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm h-64 flex items-center justify-center text-gray-400 italic">
+        <div className="bg-white p-8 rounded-2xl border border-bynd-cream shadow-sm h-64 flex items-center justify-center text-bynd-ash italic">
           Recent Activity Placeholder
         </div>
       </div>

@@ -72,7 +72,7 @@ export default function HeroCompact({
 
           {subheading && (
             <p className={cn(
-              'mt-5 font-body text-body-lg leading-relaxed',
+              'mt-5 font-body font-body text-lg leading-relaxed',
               isDark ? 'text-bynd-black-200' : 'text-bynd-black-300'
             )}>
               {subheading}

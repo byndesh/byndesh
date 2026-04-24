@@ -1,11 +1,18 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 
-export async function POST(request: NextRequest) {
+export async function POST(req: Request) {
   try {
-    const body = await request.json();
-    // TODO: validate with Zod, save to DB, send email via @beyndesh/email
-    return NextResponse.json({ success: true });
+    const data = await req.json();
+    
+    // In a real implementation, this would save to database and send an email
+    console.log('Contact form submission received:', data);
+    
+    return NextResponse.json({ success: true, message: 'Message received' });
   } catch (error) {
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+    console.error('Contact form error:', error);
+    return NextResponse.json(
+      { success: false, message: 'Failed to process request' },
+      { status: 500 }
+    );
   }
 }

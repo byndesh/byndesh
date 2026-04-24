@@ -1,55 +1,46 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Link from 'next/link';
 
-export function CookieBanner() {
-  const [isVisible, setIsVisible] = useState(false);
+export default function CookieBanner() {
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    // Only show if we haven't set preferred cookie consent
-    const consent = localStorage.getItem('beyndesh_cookie_consent');
-    if (!consent) {
-      setIsVisible(true);
-    }
+    const consent = localStorage.getItem('cookie_consent');
+    if (!consent) setVisible(true);
   }, []);
 
-  if (!isVisible) return null;
-
-  const acceptAll = () => {
-    localStorage.setItem('beyndesh_cookie_consent', 'accepted');
-    setIsVisible(false);
+  const accept = () => {
+    localStorage.setItem('cookie_consent', 'accepted');
+    setVisible(false);
   };
 
-  const rejectAll = () => {
-    localStorage.setItem('beyndesh_cookie_consent', 'rejected');
-    setIsVisible(false);
+  const decline = () => {
+    localStorage.setItem('cookie_consent', 'declined');
+    setVisible(false);
   };
+
+  if (!visible) return null;
 
   return (
-    <div className="fixed bottom-0 inset-x-0 z-[100] bg-[#1A1A1A] border-t border-[#4A4A4A] p-4 md:p-6 shadow-2xl">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-        <div className="text-white text-sm md:text-base font-body opacity-90 max-w-3xl">
-          We use cookies to enhance your journey, analyze site traffic, and personalize content. 
-          By clicking <strong className="text-[#FF5F0F]">Accept</strong>, you agree to our use of cookies according to our{' '}
-          <Link href="/cookie-policy" className="underline hover:text-[#FF5F0F] transition-colors">
-            Cookie Policy
-          </Link>.
-        </div>
-        
-        <div className="flex z-10 gap-4 flex-shrink-0 w-full md:w-auto">
-          <button 
-            onClick={rejectAll}
-            className="flex-1 md:flex-none border border-[#FAF7F2] text-[#FAF7F2] hover:bg-[#FAF7F2] hover:text-[#1A1A1A] px-6 py-2 rounded-full font-heading uppercase text-xs tracking-wider font-bold transition-colors"
+    <div className="fixed bottom-0 left-0 right-0 z-50 bg-bynd-ink border-t border-white/10 p-6">
+      <div className="mx-auto max-w-5xl flex flex-col md:flex-row items-center justify-between gap-4">
+        <p className="font-body text-white/80 text-sm">
+          We use cookies to improve your experience. Essential cookies are required; analytics and marketing cookies are optional.{' '}
+          <a href="/cookie-policy" className="text-bynd-flame hover:underline">Learn more →</a>
+        </p>
+        <div className="flex gap-3 shrink-0">
+          <button
+            onClick={decline}
+            className="font-ui text-sm text-white/60 border border-white/20 px-5 py-2 rounded-full hover:border-white/40 transition"
           >
-            Reject Non-Essential
+            DECLINE
           </button>
-          
-          <button 
-            onClick={acceptAll}
-            className="flex-1 md:flex-none bg-[#FF5F0F] text-white hover:bg-[#E5550D] px-6 py-2 rounded-full font-heading uppercase text-xs tracking-wider font-bold transition-colors"
+          <button
+            onClick={accept}
+            className="font-ui text-sm bg-bynd-flame text-white px-5 py-2 rounded-full hover:bg-bynd-flame/90 transition"
           >
-            Accept
+            ACCEPT ALL
           </button>
         </div>
       </div>

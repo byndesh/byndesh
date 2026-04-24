@@ -3,7 +3,7 @@
  * @description Lavishly Yours cursive flourish — used max 2–3 times per page.
  *   Adds the "handwritten luxury" feel to section dividers and headings.
  * @param {Object} props
- * @param {string} props.children - The accent text (e.g. "Beyndesh", "Beyond the Land")
+ * @param {string} props.children - The accent text (e.g. "Bynd BD", "Beyond the Land")
  * @param {'orange'|'black'|'white'} [props.color]
  * @param {number} [props.rotate] - CSS rotate degrees (-6 to 6)
  * @param {'sm'|'md'|'lg'} [props.size]

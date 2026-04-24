@@ -17,7 +17,7 @@ export default async function EditDestinationPage({ params }: Props) {
         Edit Destination
       </h1>
       {/* TODO: fetch destination by id and render DestinationForm */}
-      <div className="rounded-xl border border-gray-200 bg-white p-8 text-center text-gray-400">
+      <div className="rounded-xl border border-bynd-border bg-white p-8 text-center text-bynd-ash">
         Destination ID: {id} — Form coming soon
       </div>
     </div>

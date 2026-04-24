@@ -1,122 +1,129 @@
-'use client';
+// NO "use client" — this is a Server Component
+import GalleryFilter from '@/components/interactive/GalleryFilter';
 
-import { useState } from 'react';
-import { Container } from '@/components/layout/Container';
-import { SectionTitle } from '@/components/typography/SectionTitle';
+export const metadata = {
+  title: 'Gallery — Bynd BD',
+  description: 'See Bangladesh through our eyes. Real photos from real Bynd BD trips.',
+};
+
+const GALLERY_ITEMS = [
+  {
+    src: '/images/gallery/padma-sunrise.jpg',
+    alt: 'Sunrise over the Padma River',
+    category: 'Rivers & Boats',
+    location: 'Barisal Division',
+    caption: 'Sunrise over the Padma River. The boatman Karim has made this crossing every morning for 30 years.',
+    photographer: 'Rafiq Ahmed',
+  },
+  {
+    src: '/images/gallery/chakma-weaving.jpg',
+    alt: 'Chakma women weaving',
+    category: 'People',
+    location: 'Rangamati',
+    caption: 'Chakma women weaving on backstrap looms. The patterns tell stories of their community\'s history.',
+    photographer: 'Tania Chakma',
+  },
+  {
+    src: '/images/gallery/panam-nagar.jpg',
+    alt: 'Abandoned mansions of Panam Nagar',
+    category: 'Heritage',
+    location: 'Sonargaon',
+    caption: 'The abandoned mansions of Panam Nagar. Built by Hindu merchants in the 19th century, now frozen in time.',
+    photographer: 'Bynd BD',
+  },
+  {
+    src: '/images/gallery/kacchi-biryani.jpg',
+    alt: 'Kacchi biryani at Haji Biriyani',
+    category: 'Food',
+    location: 'Old Dhaka',
+    caption: 'Kacchi biryani at Haji Biriyani, Old Dhaka. Every grain separate. Every bite a memory.',
+    photographer: 'Sofia H.',
+  },
+  {
+    src: '/images/gallery/sundarbans-waterway.jpg',
+    alt: 'Tidal waterway in the Sundarbans',
+    category: 'Sundarbans',
+    location: 'Khulna Division',
+    caption: 'A tidal waterway deep in the Sundarbans mangrove forest.',
+    photographer: 'Rafiq Ahmed',
+  },
+  {
+    src: '/images/gallery/tea-gardens.jpg',
+    alt: 'Tea gardens at dawn in Sreemangal',
+    category: 'Sylhet',
+    location: 'Sreemangal',
+    caption: 'Dawn light over the tea gardens. The pluckers arrive before sunrise.',
+    photographer: 'Bynd BD',
+  },
+  {
+    src: '/images/gallery/nafakhum.jpg',
+    alt: 'Nafakhum Waterfall',
+    category: 'Hill Tracts',
+    location: 'Bandarban',
+    caption: 'Nafakhum — Bangladesh\'s most spectacular waterfall, reachable only by a three-day trek.',
+    photographer: 'Marcus T.',
+  },
+  {
+    src: '/images/gallery/cox-bazar-sunset.jpg',
+    alt: 'Sunset at Cox\'s Bazar',
+    category: "Cox's Bazar",
+    location: "Cox's Bazar",
+    caption: 'Golden hour on the world\'s longest natural sea beach.',
+    photographer: 'Bynd BD',
+  },
+  {
+    src: '/images/gallery/spotted-deer.jpg',
+    alt: 'Spotted deer in the Sundarbans',
+    category: 'Wildlife',
+    location: 'Sundarbans',
+    caption: 'Spotted deer at the Katka boardwalk, alert to every sound.',
+    photographer: 'Rafiq Ahmed',
+  },
+  {
+    src: '/images/gallery/old-dhaka-street.jpg',
+    alt: 'Street life in Old Dhaka',
+    category: 'Dhaka',
+    location: 'Old Dhaka',
+    caption: 'The narrow lanes of Old Dhaka — a century of life compressed into every block.',
+    photographer: 'Bynd BD',
+  },
+];
 
 export default function GalleryPage() {
-  const [activeFilter, setActiveFilter] = useState('ALL');
-  
-  const filters = ['ALL', 'RIVERS & BOATS', 'SUNDARBANS', 'HILL TRACTS', 'SYLHET', 'DHAKA', 'PEOPLE', 'FOOD'];
-
   return (
-    <div className="bg-bynd-cream min-h-screen pb-32">
-      <Container className="pt-32 md:pt-48">
-        <div className="max-w-6xl mx-auto flex flex-col space-y-16">
-          {/* Header */}
-          <div className="text-center space-y-8">
-            <SectionTitle 
-              label="GALLERY" 
-              title="See Bangladesh through our eyes." 
-              className="mb-0"
-            />
-            <p className="font-body text-bynd-ash text-xl md:text-2xl max-w-2xl mx-auto italic leading-relaxed">
-              These aren't stock photos. Every image was taken by our curators or travelers during real Bynd BD journeys. This is the delta beyond the last light.
-            </p>
-          </div>
+    <main className="pt-32 pb-20 bg-bynd-cream min-h-screen">
+      <div className="mx-auto max-w-7xl px-6">
+        <p className="font-accent italic text-bynd-flame mb-2">every photo tells a journey</p>
+        <h1 className="font-heading text-5xl md:text-7xl text-bynd-ink uppercase mb-4">
+          SEE BANGLADESH<br />THROUGH OUR EYES.
+        </h1>
+        <p className="font-body text-bynd-ash max-w-2xl text-lg mb-12">
+          These aren&apos;t stock photos. Every image was taken by our guides, our travelers, or our in-house photographer during real Bynd BD trips. This is what Bangladesh actually looks like.
+        </p>
 
-          {/* Filters */}
-          <div className="flex flex-wrap items-center justify-center gap-3 md:gap-6 pt-8">
-            {filters.map((filter) => (
-              <button
-                key={filter}
-                onClick={() => setActiveFilter(filter)}
-                className={`px-8 py-3 rounded-full font-heading uppercase text-[10px] tracking-[0.2em] font-black transition-all border ${
-                  activeFilter === filter 
-                    ? 'border-bynd-flame bg-bynd-flame text-white shadow-lg shadow-orange-500/20' 
-                    : 'border-black/5 text-bynd-mist hover:bg-white hover:border-bynd-flame hover:text-bynd-flame'
-                }`}
-              >
-                {filter}
-              </button>
-            ))}
-          </div>
+        <GalleryFilter items={GALLERY_ITEMS} />
 
-          {/* Featured Video Section — Dusk Panel Pattern */}
-          <div className="w-full pt-12">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-              <div className="flex flex-col bg-dusk rounded-[40px] overflow-hidden shadow-premium aspect-video relative group border border-white/5">
-                <div className="absolute inset-0 bg-sunrise opacity-10 group-hover:opacity-20 transition-opacity" />
-                <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-bynd-ink/80 to-transparent z-10" />
-                <div className="absolute inset-0 flex items-center justify-center z-20">
-                   <div className="w-20 h-20 bg-ember rounded-full flex items-center justify-center cursor-pointer transition-transform group-hover:scale-110 shadow-lg">
-                     <span className="text-white text-2xl ml-2">▶</span>
-                   </div>
-                </div>
-                <div className="absolute bottom-10 left-10 z-30">
-                  <span className="text-bynd-gold font-heading text-[9px] font-black tracking-widest uppercase block mb-2">CINEMATIC JOURNEY</span>
-                  <h3 className="font-body italic text-white text-3xl">The Delta Song</h3>
-                </div>
-              </div>
-
-              <div className="flex flex-col bg-dusk rounded-[40px] overflow-hidden shadow-premium aspect-video relative group border border-white/5">
-                <div className="absolute inset-0 bg-sunrise opacity-10 group-hover:opacity-20 transition-opacity" />
-                <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-bynd-ink/80 to-transparent z-10" />
-                <div className="absolute inset-0 flex items-center justify-center z-20">
-                   <div className="w-20 h-20 bg-ember rounded-full flex items-center justify-center cursor-pointer transition-transform group-hover:scale-110 shadow-lg">
-                     <span className="text-white text-2xl ml-2">▶</span>
-                   </div>
-                </div>
-                <div className="absolute bottom-10 left-10 z-30">
-                  <span className="text-bynd-gold font-heading text-[9px] font-black tracking-widest uppercase block mb-2">LOCAL DISCOURSE</span>
-                  <h3 className="font-body italic text-white text-3xl">Voices of Bandarban</h3>
-                </div>
-              </div>
+        {/* Video Section */}
+        <div className="mt-20">
+          <h2 className="font-heading text-2xl text-bynd-ink uppercase mb-8">WATCH</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="aspect-video bg-bynd-ink rounded-2xl flex items-center justify-center">
+              <span className="font-body text-white/60">&quot;The Delta&quot; — A Bynd BD Short Film (3:42)</span>
             </div>
-          </div>
-
-          {/* Masonry Photo Grid Placeholder — Applying 24px Card rule */}
-          <div className="columns-1 md:columns-2 lg:columns-3 gap-8 pt-12 space-y-8">
-            <div className="relative break-inside-avoid shadow-sm rounded-3xl overflow-hidden bg-fog border border-black/5 group">
-              <div className="w-full aspect-[4/5] bg-bynd-charcoal opacity-40 group-hover:scale-105 transition-transform duration-1000" />
-              <div className="absolute inset-x-0 bottom-0 p-8 bg-gradient-to-t from-bynd-ink/90 to-transparent translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                <span className="text-bynd-flame font-heading font-black uppercase text-[9px] tracking-widest mb-2 block">SUNDARBANS</span>
-                <p className="text-white font-body italic text-lg line-clamp-2 mb-4">A Royal Bengal Tiger caught on camera during a misty morning tracking expedition.</p>
-                <div className="w-8 h-px bg-bynd-gold opacity-50" />
-              </div>
+            <div className="aspect-video bg-bynd-ink rounded-2xl flex items-center justify-center">
+              <span className="font-body text-white/60">&quot;First Steps in Bandarban&quot; (2:15)</span>
             </div>
-
-            <div className="relative break-inside-avoid shadow-sm rounded-3xl overflow-hidden bg-fog border border-black/5 group">
-              <div className="w-full aspect-[3/2] bg-bynd-charcoal opacity-40 group-hover:scale-105 transition-transform duration-1000" />
-              <div className="absolute inset-x-0 bottom-0 p-8 bg-gradient-to-t from-bynd-ink/90 to-transparent translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                <span className="text-bynd-flame font-heading font-black uppercase text-[9px] tracking-widest mb-2 block">BARISAL</span>
-                <p className="text-white font-body italic text-lg line-clamp-2 mb-4">The vibrant floating guava market at dawn. Trading happens entirely boat-to-boat.</p>
-                <div className="w-8 h-px bg-bynd-gold opacity-50" />
-              </div>
-            </div>
-
-            <div className="relative break-inside-avoid shadow-sm rounded-3xl overflow-hidden bg-fog border border-black/5 group">
-              <div className="w-full aspect-square bg-bynd-charcoal opacity-40 group-hover:scale-105 transition-transform duration-1000" />
-              <div className="absolute inset-x-0 bottom-0 p-8 bg-gradient-to-t from-bynd-ink/90 to-transparent translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                <span className="text-bynd-flame font-heading font-black uppercase text-[9px] tracking-widest mb-2 block">PEOPLE</span>
-                <p className="text-white font-body italic text-lg line-clamp-2 mb-4">Plucking the two leaves and a bud in Sreemangal's estate.</p>
-                <div className="w-8 h-px bg-bynd-gold opacity-50" />
-              </div>
-            </div>
-
-            {/* Additional placeholders for balance */}
-            <div className="relative break-inside-avoid shadow-sm rounded-3xl overflow-hidden bg-fog border border-black/5 group aspect-[2/3]" />
-            <div className="relative break-inside-avoid shadow-sm rounded-3xl overflow-hidden bg-fog border border-black/5 group aspect-square" />
-            <div className="relative break-inside-avoid shadow-sm rounded-3xl overflow-hidden bg-fog border border-black/5 group aspect-[4/3]" />
-          </div>
-
-          <div className="pt-20 text-center">
-            <span className="font-signature italic text-5xl text-bynd-flame grad-text">
-              Every photo tells a journey.
-            </span>
           </div>
         </div>
-      </Container>
-    </div>
+
+        {/* Submit CTA */}
+        <div className="mt-16 text-center">
+          <p className="font-body text-bynd-ash text-lg">
+            Were you on a Bynd BD trip? Tag us on Instagram <strong>@byndbd</strong> or email{' '}
+            <span className="text-bynd-flame">stories@byndbd.com</span>
+          </p>
+        </div>
+      </div>
+    </main>
   );
 }

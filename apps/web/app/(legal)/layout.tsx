@@ -1,12 +1,9 @@
-import { Navbar } from '@/components/navigation/Navbar';
-import { Footer } from '@/components/navigation/Footer';
-
 export default function LegalLayout({ children }: { children: React.ReactNode }) {
   return (
-    <>
-      <Navbar />
-      <main id="main-content" className="pt-20">{children}</main>
-      <Footer />
-    </>
+    <main className="pt-24 pb-16 min-h-screen bg-bynd-cream">
+      <div className="mx-auto max-w-3xl px-6">
+        {children}
+      </div>
+    </main>
   );
 }

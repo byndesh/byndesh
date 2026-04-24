@@ -1,54 +1,75 @@
 import { Metadata } from 'next';
 import { Container } from '@/components/layout/Container';
-import ButtonOutline from '@/components/buttons/ButtonOutline';
+import { SectionTitle } from '@/components/typography/SectionTitle';
 
 export const metadata: Metadata = {
-  title: 'Partners & Press — Beyndesh',
+  title: 'Partners & Press — Bynd BD',
   description: 'The company we keep.',
 };
 
 export default function PartnersPage() {
+  const partners = [
+    { name: 'Bangladesh Parjatan Corporation', type: 'Government' },
+    { name: 'Biman Bangladesh Airlines', type: 'Transport' },
+    { name: 'Bengal Foundation', type: 'Culture' },
+    { name: 'BRAC', type: 'Community' },
+    { name: 'Local Eco-Lodges', type: 'Hospitality' },
+    { name: 'Wildlife Conservation Society', type: 'Conservation' },
+  ];
+
   return (
-    <div className="bg-[#FAF7F2] min-h-screen pb-24">
-      <Container className="pt-24 md:pt-32">
-        <div className="max-w-5xl mx-auto flex flex-col space-y-16">
+    <main className="bg-bynd-cream min-h-screen pt-32 pb-24">
+      <Container>
+        <div className="max-w-5xl mx-auto space-y-24">
+          
           {/* Header */}
           <div className="text-center space-y-6">
-            <span className="text-[#FF5F0F] font-heading font-bold uppercase tracking-[0.2em] text-xs">
+            <span className="text-bynd-flame font-heading font-black uppercase tracking-[0.4em] text-[10px]">
               PARTNERS & PRESS
             </span>
-            <h1 className="font-heading font-bold uppercase text-4xl md:text-5xl lg:text-7xl text-[#1A1A1A] leading-[1.1] whitespace-pre-wrap">
-              {"THE COMPANY\nWE KEEP."}
+            <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl text-bynd-ink uppercase leading-tight">
+              THE COMPANY WE KEEP.
             </h1>
+            <p className="font-accent italic text-bynd-flame text-2xl">
+              collaboration across the delta
+            </p>
           </div>
 
-          {/* Partners Section */}
-          <div className="space-y-8">
+          {/* Partners Grid */}
+          <div className="space-y-12">
+            <h2 className="font-heading font-black uppercase text-[10px] tracking-[0.4em] text-bynd-ink border-b border-black/5 pb-4">
+              OUR PARTNERS
+            </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {['Bangladesh Parjatan Corporation', 'Biman Bangladesh Airlines', 'BRAC', 'Bengal Foundation', 'Grameenphone', 'Local eco-lodges & homestays'].map((partner) => (
-                <div key={partner} className="bg-white p-8 rounded-[12px] border border-gray-100 shadow-sm flex flex-col items-center justify-center text-center space-y-4 min-h-[200px]">
-                  {/* Logo Placeholder */}
-                  <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center">
-                    <span className="text-gray-400">❖</span>
-                  </div>
-                  <h3 className="font-heading font-bold uppercase text-[#1A1A1A]">{partner}</h3>
+              {partners.map((partner) => (
+                <div key={partner.name} className="bg-white p-8 rounded-3xl border border-bynd-border shadow-soft flex flex-col justify-center items-center text-center h-48 hover:shadow-premium transition-shadow">
+                  <span className="text-bynd-silver mb-4">❖</span>
+                  <h3 className="font-heading text-lg text-bynd-ink uppercase">{partner.name}</h3>
+                  <p className="font-ui text-xs text-bynd-ash uppercase tracking-widest mt-2">{partner.type}</p>
                 </div>
               ))}
             </div>
             
-            <div className="bg-[#FF5F0F]/10 p-6 border border-[#FF5F0F]/20 rounded-[12px] text-center">
-              <p className="font-body text-[#1A1A1A] text-lg">
-                Interested in partnering? Email <a href="mailto:partners@beyndesh.com" className="font-bold underline hover:text-[#FF5F0F] transition-colors">partners@beyndesh.com</a>
+            <div className="bg-bynd-parchment p-8 rounded-3xl border border-bynd-border text-center flex flex-col md:flex-row items-center justify-between gap-6">
+              <p className="font-body text-bynd-ink text-lg italic">
+                Interested in partnering with Bynd BD?
               </p>
+              <a href="mailto:partners@byndbd.com" className="bg-bynd-ink text-white font-ui uppercase text-sm tracking-wider px-8 py-3 rounded-full hover:bg-bynd-flame transition-colors">
+                Contact Us
+              </a>
             </div>
           </div>
 
           {/* Press Section */}
-          <div className="border-t border-gray-200 pt-16 space-y-10">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-              <div className="space-y-6">
-                <h2 className="font-heading font-bold uppercase text-2xl text-[#1A1A1A]">Featured In</h2>
-                <ul className="space-y-4 font-heading text-lg text-[#4A4A4A] tracking-wider uppercase font-semibold">
+          <div className="space-y-12 pt-12 border-t border-bynd-border">
+            <h2 className="font-heading font-black uppercase text-[10px] tracking-[0.4em] text-bynd-ink border-b border-black/5 pb-4">
+              PRESS & MEDIA
+            </h2>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+              <div className="space-y-8">
+                <h3 className="font-heading text-2xl text-bynd-ink uppercase">Featured In</h3>
+                <ul className="space-y-4 font-body text-xl text-bynd-ash italic">
                   <li>— The Daily Star</li>
                   <li>— Lonely Planet</li>
                   <li>— Wanderlust Magazine</li>
@@ -56,32 +77,33 @@ export default function PartnersPage() {
                 </ul>
               </div>
 
-              <div className="space-y-6">
-                <h2 className="font-heading font-bold uppercase text-2xl text-[#1A1A1A]">Media Kit</h2>
-                <p className="font-body text-[#4A4A4A]">
-                  Brand guidelines, photography, founder bio, fact sheet.
+              <div className="space-y-8">
+                <h3 className="font-heading text-2xl text-bynd-ink uppercase">Media Resources</h3>
+                <p className="font-body text-bynd-stone text-lg">
+                  Access our brand guidelines, high-resolution photography, founder bio, and official fact sheet.
                 </p>
-                <ButtonOutline label="DOWNLOAD MEDIA KIT →" href="#" />
-                
-                <div className="pt-4 space-y-2">
-                  <p className="font-body text-[#4A4A4A] text-sm">
-                    Press inquiries: <a href="mailto:press@beyndesh.com" className="font-bold hover:text-[#FF5F0F] transition-colors">press@beyndesh.com</a>
-                  </p>
-                </div>
+                <button className="text-bynd-flame font-ui text-sm uppercase tracking-widest border border-bynd-flame px-8 py-3 rounded-full hover:bg-bynd-flame hover:text-white transition-colors">
+                  Download Media Kit
+                </button>
+                <p className="font-ui text-xs text-bynd-ash pt-4">
+                  Press inquiries: <a href="mailto:press@byndbd.com" className="text-bynd-ink hover:text-bynd-flame">press@byndbd.com</a>
+                </p>
               </div>
             </div>
 
-            <div className="bg-white p-8 rounded-[12px] border border-gray-100 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="bg-white p-8 md:p-12 rounded-3xl border border-bynd-border shadow-soft flex flex-col md:flex-row items-center justify-between gap-8">
               <div className="space-y-2 max-w-xl text-center md:text-left">
-                <h3 className="font-heading font-bold uppercase text-[#1A1A1A] text-xl">Hosted Trips</h3>
-                <p className="font-body text-[#4A4A4A]">We occasionally host press trips for select journalists and travel writers.</p>
+                <h3 className="font-heading text-xl text-bynd-ink uppercase">Press Trips</h3>
+                <p className="font-body text-bynd-ash text-lg">We occasionally host press trips for select journalists, travel writers, and content creators.</p>
               </div>
-              <ButtonOutline label="APPLY FOR A PRESS TRIP →" href="#" color="black" />
+              <button className="bg-bynd-ink text-white font-ui uppercase text-sm tracking-wider px-8 py-3 rounded-full hover:bg-bynd-flame transition-colors whitespace-nowrap">
+                Apply for a Trip
+              </button>
             </div>
           </div>
 
         </div>
       </Container>
-    </div>
+    </main>
   );
 }

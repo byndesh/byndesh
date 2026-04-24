@@ -22,9 +22,9 @@ interface BodyTextProps {
 }
 
 const sizeMap = {
-  lg:   'text-body-lg',
+  lg:   'font-body text-lg',
   base: 'text-body',
-  sm:   'text-body-sm',
+  sm:   'font-body text-sm',
 };
 
 const colorMap = {

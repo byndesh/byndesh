@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'My Wishlist | Beyndesh',
+  title: 'My Wishlist | Bynd BD',
   description: 'Premium adventure travel in Bangladesh.',
 };
 

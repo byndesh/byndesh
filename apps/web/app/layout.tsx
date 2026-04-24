@@ -31,6 +31,7 @@ export const metadata: Metadata = {
 
 import { Navbar } from "@/components/navigation/Navbar";
 import { Footer } from "@/components/navigation/Footer";
+import CookieBanner from '@/components/interactive/CookieBanner';
 
 export default function RootLayout({
   children,
@@ -51,6 +52,7 @@ export default function RootLayout({
         {/* Removed horizontal padding and top padding to allow full-width heroes/sections */}
         <main id="main-content">{children}</main>
         <Footer />
+        <CookieBanner />
       </body>
     </html>
   );

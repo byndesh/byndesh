@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import { Container } from '@/components/layout/Container';
-import { LogoMark } from '../branding/LogoMark';
 import Link from 'next/link';
 
 interface HeroSectionProps {

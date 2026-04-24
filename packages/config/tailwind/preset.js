@@ -41,10 +41,12 @@ module.exports = {
         },
       },
       fontFamily: {
-        logo: ["'Titillium Web'", "sans-serif"],
-        heading: ["'Titillium Web'", "sans-serif"],
-        body: ["'Goudy Bookletter 1911'", "serif"],
-        signature: ["'Lavishly Yours'", "cursive"],
+        logo: ["var(--font-titillium-web)", "sans-serif"],
+        heading: ["var(--font-titillium-web)", "sans-serif"],
+        body: ["var(--font-goudy)", "serif"],
+        signature: ["var(--font-lavishly)", "cursive"],
+        ui: ["var(--font-titillium-web)", "sans-serif"],
+        accent: ["var(--font-lavishly)", "cursive"],
       },
       fontSize: {
         "micro": ["9px", { lineHeight: "1", letterSpacing: "0.4em", fontWeight: "700" }],

@@ -5,11 +5,41 @@ import { cn } from '@/lib/utils';
 
 export function ContactForm() {
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    origin: '',
+    dates: '',
+    interest: 'RIVERS & BOATS',
+    message: ''
+  });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.id]: e.target.value
+    });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('submitting');
-    setTimeout(() => setStatus('success'), 1500);
+    
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      if (response.ok) {
+        setStatus('success');
+      } else {
+        setStatus('idle');
+      }
+    } catch (error) {
+      console.error('Contact form submission failed:', error);
+      setStatus('idle');
+    }
   };
 
   if (status === 'success') {
@@ -17,7 +47,7 @@ export function ContactForm() {
       <div className="bg-fog p-12 rounded-3xl text-center border border-black/5 shadow-premium">
         <h3 className="font-body italic text-4xl text-bynd-ink mb-6">Conversation Started</h3>
         <p className="font-body text-bynd-ash text-lg max-w-sm mx-auto">
-          Thank you for reaching out. We respond to every letter within 24 hours. Usually faster.
+          Thank you for reaching out, {formData.name.split(' ')[0]}. We respond to every letter within 24 hours. Usually faster.
         </p>
       </div>
     );
@@ -31,39 +61,39 @@ export function ContactForm() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="flex flex-col">
           <label htmlFor="name" className={labelClasses}>Full Name*</label>
-          <input required id="name" type="text" className={inputClasses} placeholder="YOUR NAME" />
+          <input required id="name" value={formData.name} onChange={handleChange} type="text" className={inputClasses} placeholder="YOUR NAME" />
         </div>
         <div className="flex flex-col">
           <label htmlFor="email" className={labelClasses}>Email Address*</label>
-          <input required id="email" type="email" className={inputClasses} placeholder="YOU@DOMAIN.COM" />
+          <input required id="email" value={formData.email} onChange={handleChange} type="email" className={inputClasses} placeholder="YOU@DOMAIN.COM" />
         </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="flex flex-col">
           <label htmlFor="origin" className={labelClasses}>Where are you from?</label>
-          <input id="origin" type="text" className={inputClasses} placeholder="CITY, COUNTRY" />
+          <input id="origin" value={formData.origin} onChange={handleChange} type="text" className={inputClasses} placeholder="CITY, COUNTRY" />
         </div>
         <div className="flex flex-col">
           <label htmlFor="dates" className={labelClasses}>When traveling?</label>
-          <input id="dates" type="text" className={inputClasses} placeholder="E.G. NOV 2026" />
+          <input id="dates" value={formData.dates} onChange={handleChange} type="text" className={inputClasses} placeholder="E.G. NOV 2026" />
         </div>
       </div>
 
       <div className="flex flex-col">
         <label htmlFor="interest" className={labelClasses}>What interests you most?</label>
-        <select id="interest" className={cn(inputClasses, "appearance-none cursor-pointer")}>
-          <option>RIVERS & BOATS</option>
-          <option>SUNDARBANS & WILDLIFE</option>
-          <option>HILL TRACTS & TREKKING</option>
-          <option>SYLHET & TEA COUNTRY</option>
-          <option>I DON'T KNOW YET — SURPRISE ME!</option>
+        <select id="interest" value={formData.interest} onChange={handleChange} className={cn(inputClasses, "appearance-none cursor-pointer")}>
+          <option value="RIVERS & BOATS">RIVERS & BOATS</option>
+          <option value="SUNDARBANS & WILDLIFE">SUNDARBANS & WILDLIFE</option>
+          <option value="HILL TRACTS & TREKKING">HILL TRACTS & TREKKING</option>
+          <option value="SYLHET & TEA COUNTRY">SYLHET & TEA COUNTRY</option>
+          <option value="I DON'T KNOW YET — SURPRISE ME!">I DON'T KNOW YET — SURPRISE ME!</option>
         </select>
       </div>
 
       <div className="flex flex-col">
         <label htmlFor="message" className={labelClasses}>Dream Journey Details</label>
-        <textarea id="message" rows={5} className={cn(inputClasses, "rounded-3xl resize-none")} placeholder="TELL US ABOUT THE HORIZON YOU SEEK..."></textarea>
+        <textarea id="message" value={formData.message} onChange={handleChange} rows={5} className={cn(inputClasses, "rounded-3xl resize-none")} placeholder="TELL US ABOUT THE HORIZON YOU SEEK..."></textarea>
       </div>
 
       <div className="pt-6">

@@ -1,11 +1,12 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 
-export async function POST(request: NextRequest) {
+export async function POST(request: Request) {
   try {
-    const { email } = await request.json();
-    // TODO: validate email, save subscriber, send welcome email
+    const data = await request.json();
+    // TODO: Wire to Mailchimp, ConvertKit, Resend, etc.
+    console.log('New newsletter signup:', data);
     return NextResponse.json({ success: true });
-  } catch (error) {
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+  } catch {
+    return NextResponse.json({ error: 'Failed to process signup' }, { status: 500 });
   }
 }

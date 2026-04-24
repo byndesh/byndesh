@@ -1,6 +1,6 @@
 /**
  * @component LogoText
- * @description BEYNDESH logotype in Hubot Sans — ultra-tight tracking.
+ * @description Bynd BD logotype in Hubot Sans — ultra-tight tracking.
  *   Used only for logo rendering, not for general branding text.
  * @example
  * <LogoText />
@@ -35,9 +35,9 @@ export default function LogoText({ color = 'black', size = 'md', className }: Lo
         sizeMap[size],
         className
       )}
-      aria-label="Beyndesh"
+      aria-label="Bynd BD"
     >
-      BEYNDESH
+      Bynd BD
     </span>
   );
 }

@@ -17,7 +17,7 @@ export default async function EditStoryPage({ params }: Props) {
         Edit Story
       </h1>
       {/* TODO: fetch story by id and render StoryForm */}
-      <div className="rounded-xl border border-gray-200 bg-white p-8 text-center text-gray-400">
+      <div className="rounded-xl border border-bynd-border bg-white p-8 text-center text-bynd-ash">
         Story ID: {id} — Form coming soon
       </div>
     </div>

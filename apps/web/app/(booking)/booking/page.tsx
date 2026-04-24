@@ -1,43 +1,25 @@
-import { Metadata } from 'next';
-import { Container } from '@/components/layout/Container';
-import { BookingForm } from '@/components/forms/BookingForm';
-import { SectionTitle } from '@/components/typography/SectionTitle';
+import BookingForm from '@/components/forms/BookingForm';
 
-export const metadata: Metadata = {
+export const metadata = {
   title: 'Book Your Journey — Bynd BD',
-  description: "Let's build your adventure together.",
+  description: 'Start planning your Bangladesh adventure. Fill out our inquiry form and our travel experts will craft your perfect trip.',
 };
 
 export default function BookingPage() {
   return (
-    <div className="bg-bynd-cream min-h-screen pb-32">
-      <Container className="pt-32 md:pt-48">
-        <div className="max-w-4xl mx-auto flex flex-col space-y-16">
-          
-          {/* Header */}
-          <div className="text-center space-y-8">
-            <SectionTitle 
-              label="BOOK YOUR JOURNEY" 
-              title="Let's build your adventure together." 
-              className="mb-0"
-            />
-            <p className="font-body text-bynd-ash text-xl md:text-2xl italic leading-relaxed max-w-3xl mx-auto">
-              This is the beginning, not a commitment. Fill out what you know, leave blank what you don't. We will respond with a personalized proposal within 24 hours.
-            </p>
-          </div>
-
-          <div className="pt-12">
-            <BookingForm />
-          </div>
-
-          {/* Social Proof Signature */}
-          <div className="pt-12 text-center">
-            <span className="font-signature italic text-5xl text-bynd-flame grad-text">
-              See you Beyond.
-            </span>
-          </div>
-        </div>
-      </Container>
-    </div>
+    <main className="pt-32 pb-20 bg-bynd-cream min-h-screen">
+      <div className="mx-auto max-w-2xl px-6">
+        <span className="font-ui text-sm text-bynd-flame uppercase tracking-wider">
+          BOOK YOUR JOURNEY
+        </span>
+        <h1 className="font-heading text-4xl md:text-5xl text-bynd-ink uppercase mt-4 mb-4">
+          LET&apos;S BUILD YOUR<br />ADVENTURE TOGETHER.
+        </h1>
+        <p className="font-body text-bynd-ash text-lg mb-12">
+          This is the beginning, not a commitment. Fill out what you know, leave blank what you don&apos;t. Our team will respond within 24 hours with a personalized proposal.
+        </p>
+        <BookingForm />
+      </div>
+    </main>
   );
 }

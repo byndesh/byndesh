@@ -1,194 +1,310 @@
 'use client';
 
 import { useState } from 'react';
-import { cn } from '@/lib/utils';
-import { motion, AnimatePresence } from 'framer-motion';
+import Link from 'next/link';
 
-export function BookingForm() {
+interface BookingFormData {
+  // Step 1
+  fullName: string;
+  email: string;
+  phone: string;
+  nationality: string;
+  referralSource: string;
+  // Step 2
+  interests: string[];
+  travelDates: string;
+  flexibility: string;
+  duration: string;
+  // Step 3
+  adults: number;
+  children: number;
+  childrenAges: string;
+  travelingAs: string;
+  specialRequirements: string;
+  // Step 4
+  budget: string;
+  accommodation: string;
+  additionalNotes: string;
+}
+
+const INITIAL_DATA: BookingFormData = {
+  fullName: '',
+  email: '',
+  phone: '',
+  nationality: '',
+  referralSource: '',
+  interests: [],
+  travelDates: '',
+  flexibility: '',
+  duration: '',
+  adults: 1,
+  children: 0,
+  childrenAges: '',
+  travelingAs: '',
+  specialRequirements: '',
+  budget: '',
+  accommodation: '',
+  additionalNotes: '',
+};
+
+const INTEREST_OPTIONS = [
+  'River Expeditions',
+  'Sundarbans Safaris',
+  'Hill Tracts Trekking',
+  'Tea Country & Sylhet',
+  'Old Dhaka Immersion',
+  "Cox's Bazar & Islands",
+  'Heritage & Ruins',
+  'Tailor-Made — I have my own idea',
+  "I don't know yet — surprise me!",
+];
+
+export default function BookingForm() {
   const [step, setStep] = useState(1);
-  const [status, setStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
+  const [data, setData] = useState<BookingFormData>(INITIAL_DATA);
+  const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
-  const nextStep = () => setStep(s => Math.min(4, s + 1));
-  const prevStep = () => setStep(s => Math.max(1, s - 1));
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (step < 4) {
-      nextStep();
-      return;
-    }
-    setStatus('submitting');
-    setTimeout(() => setStatus('success'), 1500);
+  const update = (fields: Partial<BookingFormData>) => {
+    setData((prev) => ({ ...prev, ...fields }));
   };
 
-  const inputClasses = "w-full bg-white border border-black/5 text-bynd-ink placeholder-bynd-silver/40 px-8 py-4 rounded-full focus:outline-none focus:border-bynd-flame transition-all font-heading text-[10px] tracking-widest uppercase";
-  const labelClasses = "block text-bynd-silver font-heading text-[10px] font-black uppercase tracking-[0.25em] mb-4 ml-6";
-  const stepLabelClasses = "font-heading text-[10px] font-black uppercase tracking-[0.4em] text-bynd-flame border-b border-bynd-flame/10 pb-2 mb-10 w-fit";
+  const toggleInterest = (interest: string) => {
+    setData((prev) => ({
+      ...prev,
+      interests: prev.interests.includes(interest)
+        ? prev.interests.filter((i) => i !== interest)
+        : [...prev.interests, interest],
+    }));
+  };
 
-  if (status === 'success') {
+  const nextStep = () => setStep((s) => Math.min(s + 1, 4));
+  const prevStep = () => setStep((s) => Math.max(s - 1, 1));
+
+  const handleSubmit = async () => {
+    setSubmitting(true);
+    try {
+      const response = await fetch('/api/booking', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      if (response.ok) {
+        setSubmitted(true);
+      }
+    } catch (error) {
+      console.error('Booking submission failed:', error);
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  if (submitted) {
     return (
-      <div className="bg-fog p-12 md:p-20 rounded-[40px] text-center border border-black/5 shadow-premium">
-        <h3 className="font-body italic text-5xl text-bynd-ink mb-8">Journey Recorded.</h3>
-        <p className="font-body text-bynd-ash text-xl max-w-lg mx-auto mb-12 italic">
-          Your inquiry has been received. One of our curators will reach out within 24 hours with a personalized proposal for your horizon.
+      <div className="text-center py-12">
+        <p className="font-heading text-2xl text-bynd-ink uppercase mb-4">
+          ✅ THANK YOU, {data.fullName.split(' ')[0].toUpperCase()}!
         </p>
-        <div className="flex flex-col gap-6 justify-center items-center">
-          <a href="/trips" className="text-bynd-flame font-heading text-[10px] font-black tracking-widest uppercase hover:underline">Browse Journeys →</a>
-          <a href="/faq" className="text-bynd-flame font-heading text-[10px] font-black tracking-widest uppercase hover:underline">Read Guidelines →</a>
+        <p className="font-body text-bynd-ash text-lg mb-8">
+          Your inquiry has been received. One of our travel experts will reach out within 24 hours with a personalized proposal.
+        </p>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <Link href="/stories" className="font-ui text-bynd-flame hover:underline">
+            Browse our stories →
+          </Link>
+          <Link href="/faq" className="font-ui text-bynd-flame hover:underline">
+            Read our FAQ →
+          </Link>
         </div>
-        <p className="font-signature italic text-bynd-gold mt-16 text-4xl">See you Beyond.</p>
+        <p className="font-accent italic text-bynd-flame mt-8">Your adventure begins now.</p>
       </div>
     );
   }
 
   return (
-    <div className="bg-white p-8 md:p-16 rounded-[40px] border border-black/10 shadow-premium">
+    <div>
       {/* Step Indicator */}
-      <div className="flex justify-between mb-16 relative">
-        <div className="absolute top-1/2 left-0 w-full h-[1px] bg-black/5 -z-10 -translate-y-1/2" />
-        <div className="absolute top-1/2 left-0 h-[1px] bg-bynd-flame -z-10 -translate-y-1/2 transition-all duration-700 ease-in-out" style={{ width: `${((step - 1) / 3) * 100}%` }} />
-        {[1, 2, 3, 4].map((i) => (
-          <div key={i} className={cn(
-            "flex items-center justify-center w-10 h-10 rounded-full font-heading font-black text-[10px] transition-all duration-500 border",
-            step >= i ? "bg-bynd-flame border-bynd-flame text-white shadow-lg shadow-orange-500/20" : "bg-white border-black/5 text-bynd-mist"
-          )}>
-            {i}
+      <div className="flex items-center justify-center gap-2 mb-10">
+        {[1, 2, 3, 4].map((s) => (
+          <div
+            key={s}
+            className={`w-10 h-10 rounded-full flex items-center justify-center font-ui text-sm transition ${
+              s === step
+                ? 'bg-bynd-flame text-white'
+                : s < step
+                  ? 'bg-bynd-flame/20 text-bynd-flame'
+                  : 'bg-bynd-border text-bynd-ash'
+            }`}
+          >
+            {s}
           </div>
         ))}
       </div>
 
-      <form onSubmit={handleSubmit} className="flex flex-col">
-        <AnimatePresence mode="wait">
-          {step === 1 && (
-            <motion.div 
-              key="step1"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              className="space-y-10"
-            >
-              <div className={stepLabelClasses}>STEP 01 — IDENTITY</div>
-              
-              <div className="flex flex-col">
-                <label className={labelClasses}>Full Name*</label>
-                <input required type="text" className={inputClasses} placeholder="YOUR FULL NAME" />
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                <div className="flex flex-col">
-                  <label className={labelClasses}>Email Address*</label>
-                  <input required type="email" className={inputClasses} placeholder="YOU@DOMAIN.COM" />
-                </div>
-                <div className="flex flex-col">
-                  <label className={labelClasses}>Phone Number*</label>
-                  <input required type="tel" className={inputClasses} placeholder="+880..." />
-                </div>
-              </div>
-            </motion.div>
-          )}
-
-          {step === 2 && (
-            <motion.div 
-              key="step2"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              className="space-y-10"
-            >
-              <div className={stepLabelClasses}>STEP 02 — INTERESTS</div>
-              <div className="flex flex-col">
-                <label className={labelClasses}>Which horizons excite you?</label>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
-                  {['RIVER EXPEDITIONS', 'SUNDARBANS SAFARIS', 'HILL TRACTS TREKKING', 'SYLHET & TEA COUNTRY', 'TAILOR-MADE', "SURPRISE ME!"].map((opt) => (
-                    <label key={opt} className="group flex items-center space-x-4 bg-fog p-5 border border-black/5 rounded-full cursor-pointer hover:border-bynd-flame transition-all">
-                      <input type="checkbox" className="w-4 h-4 text-bynd-flame focus:ring-bynd-flame border-black/10 transition-all" />
-                      <span className="text-bynd-ink font-heading text-[10px] tracking-widest font-black group-hover:text-bynd-flame transition-colors">{opt}</span>
-                    </label>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-          )}
-
-          {step === 3 && (
-            <motion.div 
-              key="step3"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              className="space-y-10"
-            >
-              <div className={stepLabelClasses}>STEP 03 — GROUP</div>
-              <div className="grid grid-cols-2 gap-8">
-                <div className="flex flex-col">
-                  <label className={labelClasses}>Adults</label>
-                  <input type="number" min="1" defaultValue="2" className={inputClasses} />
-                </div>
-                <div className="flex flex-col">
-                  <label className={labelClasses}>Children</label>
-                  <input type="number" min="0" defaultValue="0" className={inputClasses} />
-                </div>
-              </div>
-              
-              <div className="flex flex-col">
-                <label className={labelClasses}>Traveling As</label>
-                <select className={cn(inputClasses, "appearance-none cursor-pointer")}>
-                  <option>SOLO</option>
-                  <option>COUPLE</option>
-                  <option>FAMILY</option>
-                  <option>FRIENDS</option>
-                </select>
-              </div>
-            </motion.div>
-          )}
-
-          {step === 4 && (
-            <motion.div 
-              key="step4"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              className="space-y-10"
-            >
-              <div className={stepLabelClasses}>STEP 04 — STYLE</div>
-              <div className="flex flex-col">
-                <label className={labelClasses}>Budget Per Person</label>
-                <select className={cn(inputClasses, "appearance-none cursor-pointer")}>
-                  <option>UNDER ৳25,000 / $210</option>
-                  <option>৳25,000–75,000 / $210–630</option>
-                  <option>৳75,000+ / $630+</option>
-                </select>
-              </div>
-
-              <div className="flex flex-col">
-                <label className={labelClasses}>Dream Details</label>
-                <textarea rows={4} className={cn(inputClasses, "rounded-3xl resize-none")} placeholder="ANY SEPCIFIC HORIZONS OR REQUIREMENTS?"></textarea>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        {/* Form Controls */}
-        <div className="flex flex-col sm:flex-row justify-between items-center gap-6 pt-12 border-t border-black/5 mt-16">
-          {step > 1 ? (
-             <button 
-              type="button" 
-              onClick={prevStep} 
-              className="w-full sm:w-auto font-heading uppercase font-black text-[10px] tracking-[0.3em] text-bynd-mist hover:text-bynd-ink transition-colors py-2 text-center"
-             >
-               ← BACK
-             </button>
-          ) : <div className="hidden sm:block" />}
-          
-          <button
-            type="submit"
-            disabled={status === 'submitting'}
-            className="w-full sm:w-auto bg-ember text-white font-heading uppercase text-xs font-black tracking-[0.3em] px-16 py-6 rounded-full shadow-premium hover:shadow-orange-500/20 transition-all hover:scale-[1.02] active:scale-95 disabled:opacity-50"
-          >
-            {step === 4 ? (status === 'submitting' ? 'RECORDING...' : 'FINALIZE REQUEST') : 'NEXT STEP →'}
+      {/* Step 1 */}
+      {step === 1 && (
+        <div className="space-y-6">
+          <h3 className="font-heading text-xl text-bynd-ink uppercase">WHO ARE YOU?</h3>
+          <div>
+            <label htmlFor="fullName" className="font-ui text-sm text-bynd-ink block mb-1">FULL NAME *</label>
+            <input id="fullName" type="text" required value={data.fullName} onChange={(e) => update({ fullName: e.target.value })} className="w-full border border-bynd-border rounded-xl px-4 py-3 font-body text-bynd-ink bg-white focus:border-bynd-flame focus:outline-none" />
+          </div>
+          <div>
+            <label htmlFor="email" className="font-ui text-sm text-bynd-ink block mb-1">EMAIL *</label>
+            <input id="email" type="email" required value={data.email} onChange={(e) => update({ email: e.target.value })} className="w-full border border-bynd-border rounded-xl px-4 py-3 font-body text-bynd-ink bg-white focus:border-bynd-flame focus:outline-none" />
+          </div>
+          <div>
+            <label htmlFor="phone" className="font-ui text-sm text-bynd-ink block mb-1">PHONE (WITH COUNTRY CODE) *</label>
+            <input id="phone" type="tel" required value={data.phone} onChange={(e) => update({ phone: e.target.value })} className="w-full border border-bynd-border rounded-xl px-4 py-3 font-body text-bynd-ink bg-white focus:border-bynd-flame focus:outline-none" />
+          </div>
+          <div>
+            <label htmlFor="nationality" className="font-ui text-sm text-bynd-ink block mb-1">NATIONALITY</label>
+            <input id="nationality" type="text" value={data.nationality} onChange={(e) => update({ nationality: e.target.value })} className="w-full border border-bynd-border rounded-xl px-4 py-3 font-body text-bynd-ink bg-white focus:border-bynd-flame focus:outline-none" />
+          </div>
+          <div>
+            <label htmlFor="referral" className="font-ui text-sm text-bynd-ink block mb-1">HOW DID YOU HEAR ABOUT US?</label>
+            <select id="referral" value={data.referralSource} onChange={(e) => update({ referralSource: e.target.value })} className="w-full border border-bynd-border rounded-xl px-4 py-3 font-body text-bynd-ink bg-white focus:border-bynd-flame focus:outline-none">
+              <option value="">Select...</option>
+              <option value="instagram">Instagram</option>
+              <option value="google">Google</option>
+              <option value="friend">Friend</option>
+              <option value="press">Press</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <button onClick={nextStep} className="w-full bg-bynd-flame text-white font-ui py-3 rounded-full hover:bg-bynd-flame/90 transition">
+            NEXT →
           </button>
         </div>
-      </form>
+      )}
+
+      {/* Step 2 */}
+      {step === 2 && (
+        <div className="space-y-6">
+          <h3 className="font-heading text-xl text-bynd-ink uppercase">WHAT EXCITES YOU?</h3>
+          <div className="space-y-3">
+            {INTEREST_OPTIONS.map((option) => (
+              <label key={option} className="flex items-center gap-3 cursor-pointer">
+                <input type="checkbox" checked={data.interests.includes(option)} onChange={() => toggleInterest(option)} className="w-5 h-5 accent-bynd-flame" />
+                <span className="font-body text-bynd-ink">{option}</span>
+              </label>
+            ))}
+          </div>
+          <div>
+            <label htmlFor="dates" className="font-ui text-sm text-bynd-ink block mb-1">PREFERRED TRAVEL DATES</label>
+            <input id="dates" type="text" placeholder="e.g., November 2026 or Flexible" value={data.travelDates} onChange={(e) => update({ travelDates: e.target.value })} className="w-full border border-bynd-border rounded-xl px-4 py-3 font-body text-bynd-ink bg-white focus:border-bynd-flame focus:outline-none" />
+          </div>
+          <div>
+            <label className="font-ui text-sm text-bynd-ink block mb-2">HOW FLEXIBLE ARE YOUR DATES?</label>
+            {['Very flexible', 'Somewhat', 'Fixed'].map((opt) => (
+              <label key={opt} className="flex items-center gap-2 mb-2 cursor-pointer">
+                <input type="radio" name="flexibility" value={opt} checked={data.flexibility === opt} onChange={(e) => update({ flexibility: e.target.value })} className="accent-bynd-flame" />
+                <span className="font-body text-bynd-ink">{opt}</span>
+              </label>
+            ))}
+          </div>
+          <div>
+            <label className="font-ui text-sm text-bynd-ink block mb-2">TRIP DURATION PREFERENCE</label>
+            {['2-3 days', '4-7 days', '8-14 days', '15+ days'].map((opt) => (
+              <label key={opt} className="flex items-center gap-2 mb-2 cursor-pointer">
+                <input type="radio" name="duration" value={opt} checked={data.duration === opt} onChange={(e) => update({ duration: e.target.value })} className="accent-bynd-flame" />
+                <span className="font-body text-bynd-ink">{opt}</span>
+              </label>
+            ))}
+          </div>
+          <div className="flex gap-4">
+            <button onClick={prevStep} className="flex-1 border border-bynd-border text-bynd-ink font-ui py-3 rounded-full hover:border-bynd-flame transition">
+              ← BACK
+            </button>
+            <button onClick={nextStep} className="flex-1 bg-bynd-flame text-white font-ui py-3 rounded-full hover:bg-bynd-flame/90 transition">
+              NEXT →
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Step 3 */}
+      {step === 3 && (
+        <div className="space-y-6">
+          <h3 className="font-heading text-xl text-bynd-ink uppercase">WHO&apos;S COMING?</h3>
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <label htmlFor="adults" className="font-ui text-sm text-bynd-ink block mb-1">ADULTS</label>
+              <input id="adults" type="number" min={1} value={data.adults} onChange={(e) => update({ adults: parseInt(e.target.value) || 1 })} className="w-full border border-bynd-border rounded-xl px-4 py-3 font-body text-bynd-ink bg-white focus:border-bynd-flame focus:outline-none" />
+            </div>
+            <div>
+              <label htmlFor="children" className="font-ui text-sm text-bynd-ink block mb-1">CHILDREN</label>
+              <input id="children" type="number" min={0} value={data.children} onChange={(e) => update({ children: parseInt(e.target.value) || 0 })} className="w-full border border-bynd-border rounded-xl px-4 py-3 font-body text-bynd-ink bg-white focus:border-bynd-flame focus:outline-none" />
+            </div>
+          </div>
+          {data.children > 0 && (
+            <div>
+              <label htmlFor="childAges" className="font-ui text-sm text-bynd-ink block mb-1">CHILDREN&apos;S AGES</label>
+              <input id="childAges" type="text" placeholder="e.g., 7 and 10" value={data.childrenAges} onChange={(e) => update({ childrenAges: e.target.value })} className="w-full border border-bynd-border rounded-xl px-4 py-3 font-body text-bynd-ink bg-white focus:border-bynd-flame focus:outline-none" />
+            </div>
+          )}
+          <div>
+            <label className="font-ui text-sm text-bynd-ink block mb-2">TRAVELING AS</label>
+            {['Solo', 'Couple', 'Family', 'Friends', 'Corporate Group'].map((opt) => (
+              <label key={opt} className="flex items-center gap-2 mb-2 cursor-pointer">
+                <input type="radio" name="travelingAs" value={opt} checked={data.travelingAs === opt} onChange={(e) => update({ travelingAs: e.target.value })} className="accent-bynd-flame" />
+                <span className="font-body text-bynd-ink">{opt}</span>
+              </label>
+            ))}
+          </div>
+          <div>
+            <label htmlFor="special" className="font-ui text-sm text-bynd-ink block mb-1">ANY SPECIAL REQUIREMENTS?</label>
+            <textarea id="special" rows={3} placeholder="Dietary, accessibility, medical..." value={data.specialRequirements} onChange={(e) => update({ specialRequirements: e.target.value })} className="w-full border border-bynd-border rounded-xl px-4 py-3 font-body text-bynd-ink bg-white focus:border-bynd-flame focus:outline-none resize-none" />
+          </div>
+          <div className="flex gap-4">
+            <button onClick={prevStep} className="flex-1 border border-bynd-border text-bynd-ink font-ui py-3 rounded-full hover:border-bynd-flame transition">
+              ← BACK
+            </button>
+            <button onClick={nextStep} className="flex-1 bg-bynd-flame text-white font-ui py-3 rounded-full hover:bg-bynd-flame/90 transition">
+              NEXT →
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Step 4 */}
+      {step === 4 && (
+        <div className="space-y-6">
+          <h3 className="font-heading text-xl text-bynd-ink uppercase">BUDGET & STYLE</h3>
+          <div>
+            <label htmlFor="budget" className="font-ui text-sm text-bynd-ink block mb-1">APPROXIMATE BUDGET PER PERSON</label>
+            <select id="budget" value={data.budget} onChange={(e) => update({ budget: e.target.value })} className="w-full border border-bynd-border rounded-xl px-4 py-3 font-body text-bynd-ink bg-white focus:border-bynd-flame focus:outline-none">
+              <option value="">Select...</option>
+              <option value="under-20k">Under ৳20,000 / \$170</option>
+              <option value="20k-50k">৳20,000–50,000 / \$170–420</option>
+              <option value="50k-100k">৳50,000–100,000 / \$420–840</option>
+              <option value="100k-plus">৳100,000+ / \$840+</option>
+              <option value="discuss">I&apos;d rather discuss this</option>
+            </select>
+          </div>
+          <div>
+            <label className="font-ui text-sm text-bynd-ink block mb-2">ACCOMMODATION PREFERENCE</label>
+            {['Local homestays & eco-lodges', 'Mid-range hotels', 'Premium / boutique', 'Mix of everything'].map((opt) => (
+              <label key={opt} className="flex items-center gap-2 mb-2 cursor-pointer">
+                <input type="radio" name="accommodation" value={opt} checked={data.accommodation === opt} onChange={(e) => update({ accommodation: e.target.value })} className="accent-bynd-flame" />
+                <span className="font-body text-bynd-ink">{opt}</span>
+              </label>
+            ))}
+          </div>
+          <div>
+            <label htmlFor="notes" className="font-ui text-sm text-bynd-ink block mb-1">ANYTHING ELSE YOU&apos;D LIKE US TO KNOW?</label>
+            <textarea id="notes" rows={4} placeholder="Any specific horizons you want to explore..." value={data.additionalNotes} onChange={(e) => update({ additionalNotes: e.target.value })} className="w-full border border-bynd-border rounded-xl px-4 py-3 font-body text-bynd-ink bg-white focus:border-bynd-flame focus:outline-none resize-none" />
+          </div>
+          <div className="flex gap-4">
+            <button onClick={prevStep} className="flex-1 border border-bynd-border text-bynd-ink font-ui py-3 rounded-full hover:border-bynd-flame transition">
+              ← BACK
+            </button>
+            <button onClick={handleSubmit} disabled={submitting} className="flex-1 bg-bynd-flame text-white font-ui py-3 rounded-full hover:bg-bynd-flame/90 transition disabled:opacity-50">
+              {submitting ? 'SUBMITTING...' : 'SUBMIT INQUIRY →'}
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

@@ -8,7 +8,7 @@ interface TestimonialCardProps {
 
 function TestimonialCard({ quote, author, tripDetails, rating = 5, isFeatured = false }: TestimonialCardProps) {
   return (
-    <div className={`flex flex-col bg-bynd-cream rounded-card p-8 md:p-12 shadow-soft border border-bynd-border ${isFeatured ? 'col-span-full items-center text-center' : 'h-full'}`}>
+    <div className={`flex flex-col bg-bynd-cream rounded-3xl p-8 md:p-12 shadow-soft border border-bynd-border ${isFeatured ? 'col-span-full items-center text-center' : 'h-full'}`}>
       {/* Stars */}
       <div className={`flex gap-1.5 mb-8 text-bynd-gold ${isFeatured ? 'justify-center' : ''}`}>
         {[...Array(rating)].map((_, i) => (

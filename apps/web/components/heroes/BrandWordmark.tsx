@@ -1,6 +1,6 @@
 /**
  * @component BrandWordmark
- * @description Animated BEYNDESH logotype in Hubot Sans.
+ * @description Animated Bynd BD logotype in Hubot Sans.
  *   Letters animate in staggered on mount for the hero/splash screen.
  * @param {'black'|'white'} [props.color] - Text color
  * @param {'sm'|'md'|'lg'|'xl'} [props.size] - Rendering scale
@@ -44,9 +44,9 @@ export default function BrandWordmark({
     return (
       <span
         className={cn('font-logo font-black uppercase block', sizeMap[size], colorMap[color], className)}
-        aria-label="Beyndesh"
+        aria-label="Bynd BD"
       >
-        BEYNDESH
+        Bynd BD
       </span>
     );
   }
@@ -54,7 +54,7 @@ export default function BrandWordmark({
   return (
     <motion.span
       className={cn('font-logo font-black uppercase flex', sizeMap[size], colorMap[color], className)}
-      aria-label="Beyndesh"
+      aria-label="Bynd BD"
     >
       {LETTERS.map((letter, i) => (
         <motion.span

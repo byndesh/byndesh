@@ -26,7 +26,7 @@ export function DayItinerary({ days }: DayItineraryProps) {
         const isOpen = openIndex === index;
 
         return (
-          <div key={index} className="border border-gray-200 rounded-[12px] bg-white overflow-hidden shadow-sm">
+          <div key={index} className="border border-bynd-border rounded-[12px] bg-white overflow-hidden shadow-sm">
             <button
               className="flex justify-between items-center w-full text-left p-6 focus:outline-none focus:bg-gray-50 transition-colors"
               onClick={() => toggle(index)}
@@ -36,7 +36,7 @@ export function DayItinerary({ days }: DayItineraryProps) {
                 <span className="text-[#FF5F0F] font-heading font-bold uppercase tracking-widest text-sm whitespace-nowrap">
                   {item.dayStr}
                 </span>
-                <h4 className="font-heading font-bold uppercase text-lg text-[#1A1A1A]">
+                <h4 className="font-heading font-bold uppercase text-lg text-[#1D1D1B]">
                   {item.title}
                 </h4>
               </div>
@@ -48,12 +48,12 @@ export function DayItinerary({ days }: DayItineraryProps) {
             </button>
 
             <div
-              className={`overflow-hidden transition-all duration-300 ease-in-out bg-[#FAF7F2] ${
+              className={`overflow-hidden transition-all duration-300 ease-in-out bg-[#FAF9F2] ${
                 isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
               }`}
             >
-              <div className="p-6 pt-0 border-t border-gray-100">
-                <p className="font-body text-[#4A4A4A] leading-relaxed pt-4">
+              <div className="p-6 pt-0 border-t border-bynd-cream">
+                <p className="font-body text-[#8E8D8A] leading-relaxed pt-4">
                   {item.description}
                 </p>
               </div>

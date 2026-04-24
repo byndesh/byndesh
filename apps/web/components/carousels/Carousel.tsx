@@ -8,9 +8,10 @@ interface CarouselProps {
   label?: string;
   signatureText?: string;
   className?: string;
+  onDark?: boolean;
 }
 
-export function Carousel({ children, label, signatureText, className = '' }: CarouselProps) {
+export function Carousel({ children, label, signatureText, className = '', onDark }: CarouselProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const scrollLeft = () => {
@@ -26,17 +27,17 @@ export function Carousel({ children, label, signatureText, className = '' }: Car
   };
 
   return (
-    <div className={`relative w-full overflow-hidden ${className}`}>
+    <section className={`relative w-full overflow-hidden py-16 ${onDark ? 'bg-bynd-ink' : 'bg-bynd-cream'} ${className}`}>
       {/* Header section */}
       {(label || signatureText) && (
         <div className="flex flex-col items-center justify-center text-center mb-10 w-full px-4">
           {label && (
-            <span className="text-[#FF5F0F] text-xs font-heading font-semibold uppercase tracking-[0.2em] mb-4">
+            <span className={`text-xs font-heading font-semibold uppercase tracking-[0.2em] mb-4 ${onDark ? 'text-white/60' : 'text-bynd-flame'}`}>
               {label}
             </span>
           )}
           {signatureText && (
-            <span className="font-signature italic text-[#FAF7F2] text-3xl md:text-4xl opacity-90">
+            <span className={`font-signature italic text-3xl md:text-4xl opacity-90 ${onDark ? 'text-white/80' : 'text-bynd-flame'}`}>
               {signatureText}
             </span>
           )}
@@ -47,14 +48,14 @@ export function Carousel({ children, label, signatureText, className = '' }: Car
       <div className="absolute right-4 top-4 md:right-8 lg:right-12 hidden md:flex items-center gap-2 z-10">
         <button 
           onClick={scrollLeft}
-          className="bg-[#1A1A1A] hover:bg-[#FF5F0F] text-[#FAF7F2] p-2 rounded-full border border-gray-600 transition-colors"
+          className={`p-2 rounded-full border transition-colors ${onDark ? 'bg-[#1D1D1B] hover:bg-[#FF5F0F] text-[#FAF9F2] border-bynd-ash' : 'bg-white hover:bg-bynd-flame text-bynd-ink hover:text-white border-bynd-border'}`}
           aria-label="Scroll Left"
         >
           <ChevronLeft className="w-5 h-5" />
         </button>
         <button 
           onClick={scrollRight}
-          className="bg-[#1A1A1A] hover:bg-[#FF5F0F] text-[#FAF7F2] p-2 rounded-full border border-gray-600 transition-colors"
+          className={`p-2 rounded-full border transition-colors ${onDark ? 'bg-[#1D1D1B] hover:bg-[#FF5F0F] text-[#FAF9F2] border-bynd-ash' : 'bg-white hover:bg-bynd-flame text-bynd-ink hover:text-white border-bynd-border'}`}
           aria-label="Scroll Right"
         >
           <ChevronRight className="w-5 h-5" />
@@ -71,6 +72,6 @@ export function Carousel({ children, label, signatureText, className = '' }: Car
           {children}
         </div>
       </div>
-    </div>
+    </section>
   );
 }

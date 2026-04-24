@@ -17,7 +17,7 @@ export default async function EditTripPage({ params }: Props) {
         Edit Trip
       </h1>
       {/* TODO: fetch trip by id and render TripForm */}
-      <div className="rounded-xl border border-gray-200 bg-white p-8 text-center text-gray-400">
+      <div className="rounded-xl border border-bynd-border bg-white p-8 text-center text-bynd-ash">
         Trip ID: {id} — Form coming soon
       </div>
     </div>

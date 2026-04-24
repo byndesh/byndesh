@@ -7,13 +7,15 @@ interface LogoMarkProps {
   color?: string;
   id?: string;
   className?: string;
+  opacity?: string | number;
 }
 
 export function LogoMark({ 
   size = 40, 
   color, 
   id = "bynd-grad", 
-  className 
+  className,
+  opacity 
 }: LogoMarkProps) {
   const width = size * 1.2;
   const height = size;
@@ -26,6 +28,7 @@ export function LogoMark({
       fill="none" 
       xmlns="http://www.w3.org/2000/svg"
       className={className}
+      style={opacity !== undefined ? { opacity: Number(opacity) } : undefined}
     >
       <defs>
         {!color && (

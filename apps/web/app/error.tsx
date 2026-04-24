@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
 export default function Error({
   error,
@@ -14,19 +14,22 @@ export default function Error({
   }, [error]);
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center p-6 text-center">
-      <h1 className="font-heading text-display-2 uppercase tracking-tighter">
-        Something Went Wrong
-      </h1>
-      <p className="mt-4 font-body text-body-lg text-bynd-black/70">
-        The expedition encountered an unexpected error.
-      </p>
-      <button
-        onClick={() => reset()}
-        className="mt-8 rounded-full bg-bynd-black px-8 py-3 font-heading text-label uppercase text-white hover:bg-bynd-orange transition-colors"
-      >
-        Try Again
-      </button>
-    </div>
+    <main className="pt-32 pb-20 bg-bynd-cream min-h-screen flex items-center justify-center">
+      <div className="text-center px-6">
+        <p className="font-accent italic text-bynd-flame text-xl mb-4">something went wrong</p>
+        <h1 className="font-heading text-4xl text-bynd-ink uppercase mb-6">
+          UNEXPECTED ERROR
+        </h1>
+        <p className="font-body text-bynd-ash text-lg max-w-md mx-auto mb-10">
+          We hit a snag. This has been logged and our team will look into it.
+        </p>
+        <button
+          onClick={reset}
+          className="inline-block bg-bynd-flame text-white font-ui px-8 py-3 rounded-full hover:bg-bynd-flame/90 transition"
+        >
+          TRY AGAIN →
+        </button>
+      </div>
+    </main>
   );
 }

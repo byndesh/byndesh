@@ -5,7 +5,7 @@
  * @param {Object} props
  * @param {string} props.heading - Main hero heading (e.g. "BEYOND THE LAND")
  * @param {string} props.tagline - Sub-heading or tagline sentence
- * @param {string} [props.signatureText] - Lavishly Yours accent (e.g. "Beyndesh")
+ * @param {string} [props.signatureText] - Lavishly Yours accent (e.g. "Bynd BD")
  * @param {string} props.imageUrl - Background image URL
  * @param {string} [props.videoUrl] - Optional background video URL
  * @param {string} [props.primaryCta] - Primary button label
@@ -56,7 +56,7 @@ export default function HeroFullscreen({
   tagline,
   signatureText,
   imageUrl,
-  imageAlt = 'Beyndesh adventure landscape',
+  imageAlt = 'Bynd BD adventure landscape',
   videoUrl,
   primaryCta,
   primaryHref = '/trips',
@@ -106,12 +106,12 @@ export default function HeroFullscreen({
           )}
 
           {/* Main heading */}
-          <h1 className="font-heading font-black uppercase text-display-1 text-white leading-none mb-6">
+          <h1 className="font-heading font-black uppercase font-heading text-5xl md:text-7xl uppercase text-white leading-none mb-6">
             {heading}
           </h1>
 
           {/* Tagline */}
-          <p className="font-body text-body-lg text-white/85 max-w-xl mb-10 leading-relaxed">
+          <p className="font-body font-body text-lg text-white/85 max-w-xl mb-10 leading-relaxed">
             {tagline}
           </p>
 
