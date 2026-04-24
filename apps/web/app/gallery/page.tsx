@@ -2,44 +2,39 @@
 
 import { useState } from 'react';
 import { Container } from '@/components/layout/Container';
+import { SectionTitle } from '@/components/typography/SectionTitle';
 
 export default function GalleryPage() {
-  const [activeFilter, setActiveFilter] = useState('All');
+  const [activeFilter, setActiveFilter] = useState('ALL');
   
-  const filters = ['All', 'Rivers & Boats', 'Sundarbans', 'Hill Tracts', 'Sylhet', 'Dhaka', "Cox's Bazar", 'Heritage', 'People', 'Food', 'Wildlife'];
+  const filters = ['ALL', 'RIVERS & BOATS', 'SUNDARBANS', 'HILL TRACTS', 'SYLHET', 'DHAKA', 'PEOPLE', 'FOOD'];
 
   return (
-    <div className="bg-[#FAF7F2] min-h-screen pb-24">
-      <Container className="pt-24 md:pt-32">
-        <div className="max-w-6xl mx-auto flex flex-col space-y-12">
+    <div className="bg-bynd-cream min-h-screen pb-32">
+      <Container className="pt-32 md:pt-48">
+        <div className="max-w-6xl mx-auto flex flex-col space-y-16">
           {/* Header */}
-          <div className="text-center space-y-6">
-            <span className="text-[#FF5F0F] font-heading font-bold uppercase tracking-[0.2em] text-xs">
-              GALLERY
-            </span>
-            <div className="flex flex-col items-center justify-center">
-              <span className="font-signature italic text-3xl md:text-4xl text-[#FF5F0F] rotate-[-2deg] mb-2 block">
-                every photo tells a journey
-              </span>
-              <h1 className="font-heading font-bold uppercase text-4xl md:text-5xl lg:text-7xl text-[#1A1A1A] leading-[1.1] whitespace-pre-wrap">
-                {"SEE BANGLADESH\nTHROUGH OUR EYES."}
-              </h1>
-            </div>
-            <p className="font-body text-[#4A4A4A] text-lg max-w-2xl mx-auto">
-              These aren't stock photos. Every image was taken by our guides, our travelers, or our in-house photographer during real Beyndesh trips. This is what Bangladesh actually looks like.
+          <div className="text-center space-y-8">
+            <SectionTitle 
+              label="GALLERY" 
+              title="See Bangladesh through our eyes." 
+              className="mb-0"
+            />
+            <p className="font-body text-bynd-ash text-xl md:text-2xl max-w-2xl mx-auto italic leading-relaxed">
+              These aren't stock photos. Every image was taken by our curators or travelers during real Bynd BD journeys. This is the delta beyond the last light.
             </p>
           </div>
 
           {/* Filters */}
-          <div className="flex flex-wrap items-center justify-center gap-2 md:gap-4 pt-8">
+          <div className="flex flex-wrap items-center justify-center gap-3 md:gap-6 pt-8">
             {filters.map((filter) => (
               <button
                 key={filter}
                 onClick={() => setActiveFilter(filter)}
-                className={`px-4 py-2 rounded-full font-heading uppercase text-xs tracking-wider transition-colors border ${
+                className={`px-8 py-3 rounded-full font-heading uppercase text-[10px] tracking-[0.2em] font-black transition-all border ${
                   activeFilter === filter 
-                    ? 'border-[#FF5F0F] bg-[#FF5F0F] text-white' 
-                    : 'border-gray-300 text-[#4A4A4A] hover:bg-white hover:border-gray-400'
+                    ? 'border-bynd-flame bg-bynd-flame text-white shadow-lg shadow-orange-500/20' 
+                    : 'border-black/5 text-bynd-mist hover:bg-white hover:border-bynd-flame hover:text-bynd-flame'
                 }`}
               >
                 {filter}
@@ -47,100 +42,78 @@ export default function GalleryPage() {
             ))}
           </div>
 
-          {/* Video Section */}
-          <div className="w-full pt-8 space-y-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              <div className="flex flex-col bg-[#1A1A1A] rounded-[12px] overflow-hidden shadow-sm aspect-video relative group">
-                <div className="absolute inset-0 bg-gradient-to-tr from-[#1A5276]/40 to-transparent mix-blend-multiply flex items-center justify-center z-10">
-                   <div className="w-16 h-16 bg-[#FF5F0F] rounded-full flex items-center justify-center cursor-pointer transition-transform group-hover:scale-110">
-                     <span className="text-white ml-1">▶</span>
+          {/* Featured Video Section — Dusk Panel Pattern */}
+          <div className="w-full pt-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+              <div className="flex flex-col bg-dusk rounded-[40px] overflow-hidden shadow-premium aspect-video relative group border border-white/5">
+                <div className="absolute inset-0 bg-sunrise opacity-10 group-hover:opacity-20 transition-opacity" />
+                <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-bynd-ink/80 to-transparent z-10" />
+                <div className="absolute inset-0 flex items-center justify-center z-20">
+                   <div className="w-20 h-20 bg-ember rounded-full flex items-center justify-center cursor-pointer transition-transform group-hover:scale-110 shadow-lg">
+                     <span className="text-white text-2xl ml-2">▶</span>
                    </div>
                 </div>
-                <div className="absolute bottom-6 left-6 z-20">
-                  <h3 className="font-heading uppercase font-bold text-white text-xl">The Delta</h3>
-                  <p className="font-body text-white/80 text-sm">3:42</p>
+                <div className="absolute bottom-10 left-10 z-30">
+                  <span className="text-bynd-gold font-heading text-[9px] font-black tracking-widest uppercase block mb-2">CINEMATIC JOURNEY</span>
+                  <h3 className="font-body italic text-white text-3xl">The Delta Song</h3>
                 </div>
               </div>
 
-              <div className="flex flex-col bg-[#1A1A1A] rounded-[12px] overflow-hidden shadow-sm aspect-video relative group">
-                <div className="absolute inset-0 bg-gradient-to-tr from-[#2D5016]/40 to-transparent mix-blend-multiply flex items-center justify-center z-10">
-                   <div className="w-16 h-16 bg-[#FF5F0F] rounded-full flex items-center justify-center cursor-pointer transition-transform group-hover:scale-110">
-                     <span className="text-white ml-1">▶</span>
+              <div className="flex flex-col bg-dusk rounded-[40px] overflow-hidden shadow-premium aspect-video relative group border border-white/5">
+                <div className="absolute inset-0 bg-sunrise opacity-10 group-hover:opacity-20 transition-opacity" />
+                <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-bynd-ink/80 to-transparent z-10" />
+                <div className="absolute inset-0 flex items-center justify-center z-20">
+                   <div className="w-20 h-20 bg-ember rounded-full flex items-center justify-center cursor-pointer transition-transform group-hover:scale-110 shadow-lg">
+                     <span className="text-white text-2xl ml-2">▶</span>
                    </div>
                 </div>
-                <div className="absolute bottom-6 left-6 z-20">
-                  <h3 className="font-heading uppercase font-bold text-white text-xl">First Steps in Bandarban</h3>
-                  <p className="font-body text-white/80 text-sm">2:15</p>
+                <div className="absolute bottom-10 left-10 z-30">
+                  <span className="text-bynd-gold font-heading text-[9px] font-black tracking-widest uppercase block mb-2">LOCAL DISCOURSE</span>
+                  <h3 className="font-body italic text-white text-3xl">Voices of Bandarban</h3>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Masonry Photo Grid Placeholder */}
-          <div className="columns-1 md:columns-2 lg:columns-3 gap-6 pt-8 space-y-6">
-            
-            <div className="relative break-inside-avoid shadow-sm rounded-[12px] overflow-hidden group">
-              <div className="w-full aspect-[4/5] bg-gray-200" />
-              <div className="absolute inset-0 bg-[#1A1A1A]/80 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6">
-                <span className="text-[#FF5F0F] font-heading font-semibold uppercase text-xs tracking-wider mb-2">Sundarbans</span>
-                <p className="text-white font-body text-sm mb-4">A Royal Bengal Tiger caught on camera during a misty morning tracking expedition.</p>
-                <div className="flex justify-between items-center text-xs text-white/60">
-                  <span>By Rafiq Ahmed</span>
-                  <a href="/trips/sundarbans-safaris" className="hover:text-white uppercase font-heading font-medium tracking-wider">Sundarbans Safari →</a>
-                </div>
+          {/* Masonry Photo Grid Placeholder — Applying 24px Card rule */}
+          <div className="columns-1 md:columns-2 lg:columns-3 gap-8 pt-12 space-y-8">
+            <div className="relative break-inside-avoid shadow-sm rounded-3xl overflow-hidden bg-fog border border-black/5 group">
+              <div className="w-full aspect-[4/5] bg-bynd-charcoal opacity-40 group-hover:scale-105 transition-transform duration-1000" />
+              <div className="absolute inset-x-0 bottom-0 p-8 bg-gradient-to-t from-bynd-ink/90 to-transparent translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                <span className="text-bynd-flame font-heading font-black uppercase text-[9px] tracking-widest mb-2 block">SUNDARBANS</span>
+                <p className="text-white font-body italic text-lg line-clamp-2 mb-4">A Royal Bengal Tiger caught on camera during a misty morning tracking expedition.</p>
+                <div className="w-8 h-px bg-bynd-gold opacity-50" />
               </div>
             </div>
 
-            <div className="relative break-inside-avoid shadow-sm rounded-[12px] overflow-hidden group">
-              <div className="w-full aspect-[3/2] bg-gray-300" />
-              <div className="absolute inset-0 bg-[#1A1A1A]/80 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6">
-                <span className="text-[#FF5F0F] font-heading font-semibold uppercase text-xs tracking-wider mb-2">Barisal</span>
-                <p className="text-white font-body text-sm mb-4">The vibrant floating guava market at dawn. Trading happens entirely boat-to-boat.</p>
-                <div className="flex justify-between items-center text-xs text-white/60">
-                  <span>By Sarah K.</span>
-                  <a href="/trips/river-expeditions" className="hover:text-white uppercase font-heading font-medium tracking-wider">River Expeditions →</a>
-                </div>
+            <div className="relative break-inside-avoid shadow-sm rounded-3xl overflow-hidden bg-fog border border-black/5 group">
+              <div className="w-full aspect-[3/2] bg-bynd-charcoal opacity-40 group-hover:scale-105 transition-transform duration-1000" />
+              <div className="absolute inset-x-0 bottom-0 p-8 bg-gradient-to-t from-bynd-ink/90 to-transparent translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                <span className="text-bynd-flame font-heading font-black uppercase text-[9px] tracking-widest mb-2 block">BARISAL</span>
+                <p className="text-white font-body italic text-lg line-clamp-2 mb-4">The vibrant floating guava market at dawn. Trading happens entirely boat-to-boat.</p>
+                <div className="w-8 h-px bg-bynd-gold opacity-50" />
               </div>
             </div>
 
-            <div className="relative break-inside-avoid shadow-sm rounded-[12px] overflow-hidden group">
-              <div className="w-full aspect-square bg-gray-200" />
-              <div className="absolute inset-0 bg-[#1A1A1A]/80 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6">
-                <span className="text-[#FF5F0F] font-heading font-semibold uppercase text-xs tracking-wider mb-2">Sylhet</span>
-                <p className="text-white font-body text-sm mb-4">Plucking the two leaves and a bud in Sreemangal's estate.</p>
-                <div className="flex justify-between items-center text-xs text-white/60">
-                  <span>By Beyndesh</span>
-                  <a href="/trips/tea-country-sylhet" className="hover:text-white uppercase font-heading font-medium tracking-wider">Tea Country →</a>
-                </div>
+            <div className="relative break-inside-avoid shadow-sm rounded-3xl overflow-hidden bg-fog border border-black/5 group">
+              <div className="w-full aspect-square bg-bynd-charcoal opacity-40 group-hover:scale-105 transition-transform duration-1000" />
+              <div className="absolute inset-x-0 bottom-0 p-8 bg-gradient-to-t from-bynd-ink/90 to-transparent translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                <span className="text-bynd-flame font-heading font-black uppercase text-[9px] tracking-widest mb-2 block">PEOPLE</span>
+                <p className="text-white font-body italic text-lg line-clamp-2 mb-4">Plucking the two leaves and a bud in Sreemangal's estate.</p>
+                <div className="w-8 h-px bg-bynd-gold opacity-50" />
               </div>
             </div>
 
-            <div className="relative break-inside-avoid shadow-sm rounded-[12px] overflow-hidden group">
-              <div className="w-full aspect-[4/3] bg-gray-300" />
-              <div className="absolute inset-0 bg-[#1A1A1A]/80 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6">
-                <span className="text-[#FF5F0F] font-heading font-semibold uppercase text-xs tracking-wider mb-2">Bandarban</span>
-                <p className="text-white font-body text-sm mb-4">The view from Keokradong peak as the morning fog rolls off the mountains.</p>
-                <div className="flex justify-between items-center text-xs text-white/60">
-                  <span>By Marcus T.</span>
-                  <a href="/trips/hill-tracts-trekking" className="hover:text-white uppercase font-heading font-medium tracking-wider">Hill Tracts →</a>
-                </div>
-              </div>
-            </div>
-
-            {/* Additional placeholders */}
-            <div className="relative break-inside-avoid shadow-sm rounded-[12px] overflow-hidden group">
-              <div className="w-full aspect-[2/3] bg-gray-200" />
-            </div>
-            <div className="relative break-inside-avoid shadow-sm rounded-[12px] overflow-hidden group">
-              <div className="w-full aspect-square bg-gray-300" />
-            </div>
-
+            {/* Additional placeholders for balance */}
+            <div className="relative break-inside-avoid shadow-sm rounded-3xl overflow-hidden bg-fog border border-black/5 group aspect-[2/3]" />
+            <div className="relative break-inside-avoid shadow-sm rounded-3xl overflow-hidden bg-fog border border-black/5 group aspect-square" />
+            <div className="relative break-inside-avoid shadow-sm rounded-3xl overflow-hidden bg-fog border border-black/5 group aspect-[4/3]" />
           </div>
 
-          <div className="pt-16 pb-8 text-center bg-[#FF5F0F]/10 p-6 rounded-[12px] border border-[#FF5F0F]/20">
-            <p className="font-body text-[#1A1A1A] text-lg">
-              Have a story from your Beyndesh trip? Tag us <strong>@beyndesh</strong> or email <a href="mailto:stories@beyndesh.com" className="font-bold underline hover:text-[#FF5F0F] transition-colors">stories@beyndesh.com</a>
-            </p>
+          <div className="pt-20 text-center">
+            <span className="font-signature italic text-5xl text-bynd-flame grad-text">
+              Every photo tells a journey.
+            </span>
           </div>
         </div>
       </Container>

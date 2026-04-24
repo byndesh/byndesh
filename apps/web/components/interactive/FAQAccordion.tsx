@@ -1,8 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import { ChevronDown, ChevronUp } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { cn } from '@/lib/utils';
 
 interface FAQ {
   question: string;
@@ -21,22 +22,31 @@ export function FAQAccordion({ items }: FAQAccordionProps) {
   };
 
   return (
-    <div className="w-full max-w-3xl mx-auto flex flex-col">
+    <div className="w-full flex flex-col">
       {items.map((item, index) => {
         const isOpen = openIndex === index;
 
         return (
-          <div key={index} className="border-b border-gray-100 last:border-0">
+          <div key={index} className="border-b border-black/5 last:border-0 group">
             <button
-              className="flex justify-between items-center w-full text-left py-6 focus:outline-none group"
+              className="flex justify-between items-center w-full text-left py-10 focus:outline-none"
               onClick={() => toggle(index)}
               aria-expanded={isOpen}
             >
-              <h3 className={`font-heading font-bold uppercase text-lg md:text-xl transition-colors duration-200 ${isOpen ? 'text-[#FF5F0F]' : 'text-[#1A1A1A] group-hover:text-[#FF5F0F]'}`}>
+              <h3 className={cn(
+                "font-heading text-lg md:text-xl tracking-[0.1em] transition-all duration-300 uppercase font-black",
+                isOpen ? "text-bynd-flame scale-[1.02]" : "text-bynd-ink group-hover:text-bynd-flame"
+              )}>
                 {item.question}
               </h3>
-              <div className={`transition-transform duration-300 ${isOpen ? 'rotate-180' : 'rotate-0'}`}>
-                <ChevronDown className={`w-6 h-6 ${isOpen ? 'text-[#FF5F0F]' : 'text-gray-400 group-hover:text-[#FF5F0F]'}`} />
+              <div className={cn(
+                "w-10 h-10 rounded-full flex items-center justify-center border border-black/5 transition-all duration-500",
+                isOpen ? "bg-bynd-flame border-bynd-flame rotate-180" : "bg-white group-hover:border-bynd-flame"
+              )}>
+                <ChevronDown className={cn(
+                  "w-5 h-5 transition-colors duration-300",
+                  isOpen ? "text-white" : "text-bynd-mist group-hover:text-bynd-flame"
+                )} />
               </div>
             </button>
 
@@ -47,10 +57,10 @@ export function FAQAccordion({ items }: FAQAccordionProps) {
                   initial={{ height: 0, opacity: 0 }}
                   animate={{ height: "auto", opacity: 1 }}
                   exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                  transition={{ duration: 0.5, ease: [0.19, 1, 0.22, 1] }}
                   className="overflow-hidden"
                 >
-                  <p className="font-body text-[#4A4A4A] leading-relaxed text-lg pb-6">
+                  <p className="font-body text-bynd-ash leading-[1.8] text-xl pb-10 italic max-w-4xl">
                     {item.answer}
                   </p>
                 </motion.div>

@@ -1,126 +1,95 @@
 import { Metadata } from 'next';
 import { Container } from '@/components/layout/Container';
-import Image from 'next/image';
+import { SectionTitle } from '@/components/typography/SectionTitle';
+import { BrandIcon } from '@/components/branding/BrandIcon';
 
 export const metadata: Metadata = {
-  title: 'About Us — Beyndesh',
+  title: 'About Us — Bynd BD',
   description: "We didn't start a travel company. We started a homecoming.",
 };
 
 export default function AboutPage() {
   return (
-    <div className="bg-[#FAF7F2] min-h-screen pb-24">
-      <Container className="pt-24 md:pt-32">
-        <div className="max-w-4xl mx-auto flex flex-col space-y-12">
+    <div className="bg-bynd-cream min-h-screen pb-32">
+      <Container className="pt-32 md:pt-48">
+        <div className="max-w-5xl mx-auto flex flex-col space-y-16">
           {/* Header */}
-          <div className="text-center space-y-6">
-            <span className="text-[#FF5F0F] font-heading font-bold uppercase tracking-[0.2em] text-xs">
-              WHO WE ARE
-            </span>
-            <h1 className="font-heading font-bold uppercase text-4xl md:text-5xl lg:text-6xl text-[#1A1A1A] leading-[1.1] whitespace-pre-wrap">
-              {"WE DIDN'T START A TRAVEL COMPANY.\nWE STARTED A HOMECOMING."}
-            </h1>
+          <div className="text-center space-y-8">
+            <SectionTitle 
+              label="WHO WE ARE" 
+              title="We didn't start a travel company. We started a homecoming." 
+              className="mb-0"
+            />
           </div>
 
-          {/* Body */}
-          <div className="font-body text-[#4A4A4A] text-lg md:text-xl leading-relaxed space-y-6 max-w-3xl mx-auto">
+          {/* Intro Body */}
+          <div className="font-body text-bynd-ash text-xl md:text-2xl leading-relaxed space-y-10 max-w-4xl mx-auto italic">
             <p>
-              <strong>Beyndesh</strong> — 'Beyond' meets 'Desh' (homeland). We are Bangladeshis building the travel agency we wished existed when friends asked us, 'Why should I visit Bangladesh?'
+              <span className="font-heading text-[10px] tracking-widest text-bynd-ink not-italic font-black">BYND BD</span> — 'Beyond' meets 'Desh' (homeland). We are Bangladeshis building the travel agency we wished existed when friends asked us, 'Why should I visit Bangladesh?'
             </p>
             <p>
               The answer was always too big for a text message. So we built this.
             </p>
             <p>
-              Bangladesh cradles the largest mangrove swamp in the world, Buddhist kingdoms dated back to the 3rd century B.C., lush tea plantations, stunning beaches, temples full of terracotta on the walls, mosques — and its people, the most generous and open-hearted you'll meet.
+              Bangladesh cradles the largest mangrove swamp in the world, Buddhist kingdoms dated back to the 3rd century B.C., lush tea plantations, stunning beaches, and temples of terracotta.
             </p>
             <p>
-              The country is compact — roughly the size of Greece — but its density of experience is exceptional.
-            </p>
-            <p>
-              We are a team of 12 — guides, fixers, photographers, and storytellers — spread across Dhaka, Sylhet, Bandarban, Khulna, and Cox's Bazar. Between us, we speak Bangla, English, Chakma, and Marma. We've walked every trail we sell and eaten at every table we recommend.
+              We are a team spread across Dhaka, Sylhet, Bandarban, and Khulna. Between us, we speak Bangla, English, Chakma, and Marma. We've walked every trail we sell and eaten at every table we recommend.
             </p>
           </div>
 
-          {/* Values Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-16">
-            <div className="flex flex-col space-y-4">
-              <h3 className="font-heading font-bold uppercase text-[#1A1A1A] text-xl">
-                1. PEOPLE FIRST, ALWAYS
-              </h3>
-              <p className="font-body text-[#4A4A4A]">
-                Every trip begins with a person, not a place. The fisherman in Cox's Bazar. The Chakma grandmother who weaves on a backstrap loom. The tea plucker in Sreemangal who names 40 varieties by leaf. We build journeys around their stories because tourism should enrich both sides.
-              </p>
+          {/* Pillars Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 pt-20">
+            <div className="p-10 bg-fog rounded-3xl border border-black/5 shadow-sm space-y-6">
+               <span className="text-bynd-flame font-heading text-[9px] font-black tracking-[0.4em] uppercase opacity-50 block">PILLAR 01</span>
+               <h3 className="font-body italic text-3xl text-bynd-ink leading-tight">People first, always</h3>
+               <p className="font-body text-bynd-ash text-lg leading-relaxed">
+                 Every trip begins with a person, not a place. We build journeys around life stories because tourism should enrich both sides.
+               </p>
             </div>
             
-            <div className="flex flex-col space-y-4">
-              <h3 className="font-heading font-bold uppercase text-[#1A1A1A] text-xl">
-                2. SLOW TRAVEL, DEEP ROOTS
-              </h3>
-              <p className="font-body text-[#4A4A4A]">
-                We don't do 7-countries-in-10-days. Bangladesh is not a checklist destination. Its attractions are deeply connected to living culture, rivers, food, and everyday life.
-              </p>
+            <div className="p-10 bg-fog rounded-3xl border border-black/5 shadow-sm space-y-6">
+               <span className="text-bynd-flame font-heading text-[9px] font-black tracking-[0.4em] uppercase opacity-50 block">PILLAR 02</span>
+               <h3 className="font-body italic text-3xl text-bynd-ink leading-tight">Slow travel, deep roots</h3>
+               <p className="font-body text-bynd-ash text-lg leading-relaxed">
+                 We don't do checklists. Bangladesh's attractions are deeply connected to living culture, rivers, and everyday rhythm.
+               </p>
             </div>
             
-            <div className="flex flex-col space-y-4">
-              <h3 className="font-heading font-bold uppercase text-[#1A1A1A] text-xl">
-                3. RESPONSIBLE BY DEFAULT
-              </h3>
-              <p className="font-body text-[#4A4A4A]">
-                We hire local. We stay local. We eat local. 80% of every booking stays in the community you visit. Local communities, particularly in the Hill Tracts and Sundarbans, are empowered to run eco-lodges and guided tours.
-              </p>
+            <div className="p-10 bg-fog rounded-3xl border border-black/5 shadow-sm space-y-6">
+               <span className="text-bynd-flame font-heading text-[9px] font-black tracking-[0.4em] uppercase opacity-50 block">PILLAR 03</span>
+               <h3 className="font-body italic text-3xl text-bynd-ink leading-tight">Responsible by default</h3>
+               <p className="font-body text-bynd-ash text-lg leading-relaxed">
+                 80% of every booking stays in the community. We stay local, eat local, and hire local to empower the delta.
+               </p>
             </div>
           </div>
 
-          {/* Team Section */}
-          <div className="pt-24 space-y-12">
-            <h2 className="font-heading font-bold uppercase text-3xl md:text-4xl text-[#1A1A1A] text-center">
-              Meet the Humans Behind Beyndesh
-            </h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {/* Example Team Card */}
-              <div className="flex flex-col bg-white rounded-[12px] overflow-hidden shadow-sm border border-gray-100">
-                <div className="aspect-[4/5] bg-gray-200 relative w-full">
-                  <div className="absolute inset-0 bg-gradient-to-tr from-[#1A5276]/20 to-[#2D5016]/20 mix-blend-multiply" />
+          {/* Founder Quote Area — Sunrise base per rule */}
+          <div className="bg-sunrise p-16 md:p-24 rounded-[40px] shadow-premium relative overflow-hidden mt-20">
+             {/* Stencil icon background decoration */}
+             <div className="absolute top-10 right-10 opacity-10 rotate-12 scale-150">
+                <BrandIcon type="support" />
+             </div>
+             
+             <div className="max-w-3xl relative z-10 space-y-12">
+                <blockquote className="font-body italic text-4xl md:text-5xl text-bynd-ink leading-tight">
+                  "We want the world to fall in love with this delta the way our families do — with a heavy heart for its tides and a light step for its horizons."
+                </blockquote>
+                <div className="flex items-center gap-6">
+                   <div className="w-16 h-px bg-bynd-flame" />
+                   <div>
+                     <p className="font-heading text-[10px] tracking-[0.25em] text-bynd-flame font-black uppercase">ASFAK CHOWDHURY</p>
+                     <p className="font-body italic text-bynd-ink/60">Founder & Curator</p>
+                   </div>
                 </div>
-                <div className="p-6 flex flex-col flex-1">
-                  <h4 className="font-heading font-bold uppercase text-[#1A1A1A] text-xl mb-1">
-                    Rafiq Ahmed
-                  </h4>
-                  <p className="text-[#FF5F0F] font-heading font-semibold uppercase text-xs tracking-wider mb-2">
-                    Lead Naturalist · Khulna
-                  </p>
-                  <p className="text-gray-500 text-sm mb-4">
-                    Bangla, English · 15 years in the Sundarbans
-                  </p>
-                  <p className="font-body text-[#4A4A4A] italic text-sm">
-                    "I've tracked tigers since I was nineteen. My father was a honey collector — a mowal. I guide because I want people to fall in love with this forest the way my family does."
-                  </p>
-                </div>
-              </div>
-              
-              {/* Additional generic placeholders for grid layout */}
-              <div className="flex flex-col bg-white rounded-[12px] overflow-hidden shadow-sm border border-gray-100">
-                <div className="aspect-[4/5] bg-gray-200 relative w-full" />
-                <div className="p-6 flex flex-col flex-1">
-                   {/* Empty placeholder for visual parity */}
-                   <p className="text-gray-400 font-body text-center mt-auto mb-auto">Meet more of the team...</p>
-                </div>
-              </div>
-
-              <div className="flex flex-col bg-white rounded-[12px] overflow-hidden shadow-sm border border-gray-100">
-                <div className="aspect-[4/5] bg-gray-200 relative w-full" />
-                <div className="p-6 flex flex-col flex-1">
-                   {/* Empty placeholder for visual parity */}
-                   <p className="text-gray-400 font-body text-center mt-auto mb-auto">Meet more of the team...</p>
-                </div>
-              </div>
-            </div>
+             </div>
           </div>
 
-          <div className="pt-16 pb-8 text-center">
-            <span className="font-signature italic text-3xl md:text-4xl text-[#FF5F0F]">
-              Come as a guest. Leave as family.
+          {/* Social Proof Signature */}
+          <div className="pt-20 text-center">
+            <span className="font-signature italic text-5xl text-bynd-flame grad-text">
+              See you Beyond.
             </span>
           </div>
         </div>

@@ -1,7 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import ButtonPrimary from '@/components/buttons/ButtonPrimary';
+import { cn } from '@/lib/utils';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export function BookingForm() {
   const [step, setStep] = useState(1);
@@ -20,174 +21,172 @@ export function BookingForm() {
     setTimeout(() => setStatus('success'), 1500);
   };
 
+  const inputClasses = "w-full bg-white border border-black/5 text-bynd-ink placeholder-bynd-silver/40 px-8 py-4 rounded-full focus:outline-none focus:border-bynd-flame transition-all font-heading text-[10px] tracking-widest uppercase";
+  const labelClasses = "block text-bynd-silver font-heading text-[10px] font-black uppercase tracking-[0.25em] mb-4 ml-6";
+  const stepLabelClasses = "font-heading text-[10px] font-black uppercase tracking-[0.4em] text-bynd-flame border-b border-bynd-flame/10 pb-2 mb-10 w-fit";
+
   if (status === 'success') {
     return (
-      <div className="bg-[#FAF7F2] p-8 md:p-12 rounded-[12px] text-center border border-gray-100 shadow-sm">
-        <h3 className="font-heading text-2xl uppercase font-bold text-[#1A1A1A] mb-4">✅ Thank you!</h3>
-        <p className="font-body text-[#4A4A4A] mb-8">
-          Your inquiry has been received. One of our travel experts will reach out within 24 hours with a personalized proposal.
+      <div className="bg-fog p-12 md:p-20 rounded-[40px] text-center border border-black/5 shadow-premium">
+        <h3 className="font-body italic text-5xl text-bynd-ink mb-8">Journey Recorded.</h3>
+        <p className="font-body text-bynd-ash text-xl max-w-lg mx-auto mb-12 italic">
+          Your inquiry has been received. One of our curators will reach out within 24 hours with a personalized proposal for your horizon.
         </p>
-        <div className="flex flex-col gap-3 justify-center items-center">
-          <a href="/stories" className="text-[#FF5F0F] font-heading font-semibold hover:underline">Browse our stories →</a>
-          <a href="/faq" className="text-[#FF5F0F] font-heading font-semibold hover:underline">Read our FAQ →</a>
-          <a href="#" className="text-[#FF5F0F] font-heading font-semibold hover:underline">Follow us on Instagram →</a>
+        <div className="flex flex-col gap-6 justify-center items-center">
+          <a href="/trips" className="text-bynd-flame font-heading text-[10px] font-black tracking-widest uppercase hover:underline">Browse Journeys →</a>
+          <a href="/faq" className="text-bynd-flame font-heading text-[10px] font-black tracking-widest uppercase hover:underline">Read Guidelines →</a>
         </div>
-        <p className="font-signature italic text-gray-500 mt-8 text-2xl">Your adventure begins now.</p>
+        <p className="font-signature italic text-bynd-gold mt-16 text-4xl">See you Beyond.</p>
       </div>
     );
   }
 
   return (
-    <div className="bg-[#FAF7F2] p-8 md:p-12 rounded-[12px] border border-gray-100 shadow-sm">
+    <div className="bg-white p-8 md:p-16 rounded-[40px] border border-black/10 shadow-premium">
       {/* Step Indicator */}
-      <div className="flex justify-between mb-8 relative">
-        <div className="absolute top-1/2 left-0 w-full h-[2px] bg-gray-200 -z-10 -translate-y-1/2" />
-        <div className="absolute top-1/2 left-0 h-[2px] bg-[#FF5F0F] -z-10 -translate-y-1/2 transition-all duration-300" style={{ width: `${((step - 1) / 3) * 100}%` }} />
+      <div className="flex justify-between mb-16 relative">
+        <div className="absolute top-1/2 left-0 w-full h-[1px] bg-black/5 -z-10 -translate-y-1/2" />
+        <div className="absolute top-1/2 left-0 h-[1px] bg-bynd-flame -z-10 -translate-y-1/2 transition-all duration-700 ease-in-out" style={{ width: `${((step - 1) / 3) * 100}%` }} />
         {[1, 2, 3, 4].map((i) => (
-          <div key={i} className={`flex items-center justify-center w-8 h-8 rounded-full font-heading font-bold text-sm ${step >= i ? 'bg-[#FF5F0F] text-white' : 'bg-gray-200 text-gray-500'}`}>
+          <div key={i} className={cn(
+            "flex items-center justify-center w-10 h-10 rounded-full font-heading font-black text-[10px] transition-all duration-500 border",
+            step >= i ? "bg-bynd-flame border-bynd-flame text-white shadow-lg shadow-orange-500/20" : "bg-white border-black/5 text-bynd-mist"
+          )}>
             {i}
           </div>
         ))}
       </div>
 
-      <form onSubmit={handleSubmit} className="flex flex-col space-y-6">
-        {step === 1 && (
-          <div className="space-y-6 animate-in slide-in-from-right-4 fade-in duration-300">
-            <h3 className="font-heading uppercase text-xl font-bold text-[#1A1A1A]">Step 1 — Who are you?</h3>
-            
-            <div className="flex flex-col space-y-2">
-              <label className="font-heading text-xs font-semibold tracking-widest text-[#4A4A4A] uppercase">Full Name*</label>
-              <input required type="text" className="bg-white border text-[#1A1A1A] border-gray-200 px-4 py-3 rounded-md focus:outline-none focus:border-[#FF5F0F]" />
-            </div>
+      <form onSubmit={handleSubmit} className="flex flex-col">
+        <AnimatePresence mode="wait">
+          {step === 1 && (
+            <motion.div 
+              key="step1"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              className="space-y-10"
+            >
+              <div className={stepLabelClasses}>STEP 01 — IDENTITY</div>
+              
+              <div className="flex flex-col">
+                <label className={labelClasses}>Full Name*</label>
+                <input required type="text" className={inputClasses} placeholder="YOUR FULL NAME" />
+              </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="flex flex-col space-y-2">
-                <label className="font-heading text-xs font-semibold tracking-widest text-[#4A4A4A] uppercase">Email*</label>
-                <input required type="email" className="bg-white border text-[#1A1A1A] border-gray-200 px-4 py-3 rounded-md focus:outline-none focus:border-[#FF5F0F]" />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div className="flex flex-col">
+                  <label className={labelClasses}>Email Address*</label>
+                  <input required type="email" className={inputClasses} placeholder="YOU@DOMAIN.COM" />
+                </div>
+                <div className="flex flex-col">
+                  <label className={labelClasses}>Phone Number*</label>
+                  <input required type="tel" className={inputClasses} placeholder="+880..." />
+                </div>
               </div>
-              <div className="flex flex-col space-y-2">
-                <label className="font-heading text-xs font-semibold tracking-widest text-[#4A4A4A] uppercase">Phone (with country code)*</label>
-                <input required type="tel" className="bg-white border text-[#1A1A1A] border-gray-200 px-4 py-3 rounded-md focus:outline-none focus:border-[#FF5F0F]" />
-              </div>
-            </div>
+            </motion.div>
+          )}
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="flex flex-col space-y-2">
-                <label className="font-heading text-xs font-semibold tracking-widest text-[#4A4A4A] uppercase">Nationality</label>
-                <input type="text" className="bg-white border text-[#1A1A1A] border-gray-200 px-4 py-3 rounded-md focus:outline-none focus:border-[#FF5F0F]" />
+          {step === 2 && (
+            <motion.div 
+              key="step2"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              className="space-y-10"
+            >
+              <div className={stepLabelClasses}>STEP 02 — INTERESTS</div>
+              <div className="flex flex-col">
+                <label className={labelClasses}>Which horizons excite you?</label>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
+                  {['RIVER EXPEDITIONS', 'SUNDARBANS SAFARIS', 'HILL TRACTS TREKKING', 'SYLHET & TEA COUNTRY', 'TAILOR-MADE', "SURPRISE ME!"].map((opt) => (
+                    <label key={opt} className="group flex items-center space-x-4 bg-fog p-5 border border-black/5 rounded-full cursor-pointer hover:border-bynd-flame transition-all">
+                      <input type="checkbox" className="w-4 h-4 text-bynd-flame focus:ring-bynd-flame border-black/10 transition-all" />
+                      <span className="text-bynd-ink font-heading text-[10px] tracking-widest font-black group-hover:text-bynd-flame transition-colors">{opt}</span>
+                    </label>
+                  ))}
+                </div>
               </div>
-              <div className="flex flex-col space-y-2">
-                <label className="font-heading text-xs font-semibold tracking-widest text-[#4A4A4A] uppercase">How did you hear about us?</label>
-                <select className="bg-white border text-[#1A1A1A] border-gray-200 px-4 py-3 rounded-md focus:outline-none focus:border-[#FF5F0F]">
-                  <option>Instagram</option>
-                  <option>Google</option>
-                  <option>Friend</option>
-                  <option>Press</option>
-                  <option>Other</option>
+            </motion.div>
+          )}
+
+          {step === 3 && (
+            <motion.div 
+              key="step3"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              className="space-y-10"
+            >
+              <div className={stepLabelClasses}>STEP 03 — GROUP</div>
+              <div className="grid grid-cols-2 gap-8">
+                <div className="flex flex-col">
+                  <label className={labelClasses}>Adults</label>
+                  <input type="number" min="1" defaultValue="2" className={inputClasses} />
+                </div>
+                <div className="flex flex-col">
+                  <label className={labelClasses}>Children</label>
+                  <input type="number" min="0" defaultValue="0" className={inputClasses} />
+                </div>
+              </div>
+              
+              <div className="flex flex-col">
+                <label className={labelClasses}>Traveling As</label>
+                <select className={cn(inputClasses, "appearance-none cursor-pointer")}>
+                  <option>SOLO</option>
+                  <option>COUPLE</option>
+                  <option>FAMILY</option>
+                  <option>FRIENDS</option>
                 </select>
               </div>
-            </div>
-          </div>
-        )}
+            </motion.div>
+          )}
 
-        {step === 2 && (
-          <div className="space-y-6 animate-in slide-in-from-right-4 fade-in duration-300">
-            <h3 className="font-heading uppercase text-xl font-bold text-[#1A1A1A]">Step 2 — What excites you?</h3>
-            <div className="flex flex-col space-y-2">
-              <label className="font-heading text-xs font-semibold tracking-widest text-[#4A4A4A] uppercase">Which journey interests you?</label>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-2">
-                {['River Expeditions', 'Sundarbans Safaris', 'Hill Tracts Trekking', 'Tea Country & Sylhet', 'Old Dhaka Immersion', "Cox's Bazar & Islands", 'Heritage & Ruins', 'Tailor-Made', "I don't know yet — surprise me!"].map((opt) => (
-                  <label key={opt} className="flex items-center space-x-3 bg-white p-3 border border-gray-200 rounded-md cursor-pointer hover:border-[#FF5F0F] transition-colors">
-                    <input type="checkbox" className="text-[#FF5F0F] focus:ring-[#FF5F0F]" />
-                    <span className="text-[#1A1A1A] text-sm">{opt}</span>
-                  </label>
-                ))}
+          {step === 4 && (
+            <motion.div 
+              key="step4"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              className="space-y-10"
+            >
+              <div className={stepLabelClasses}>STEP 04 — STYLE</div>
+              <div className="flex flex-col">
+                <label className={labelClasses}>Budget Per Person</label>
+                <select className={cn(inputClasses, "appearance-none cursor-pointer")}>
+                  <option>UNDER ৳25,000 / $210</option>
+                  <option>৳25,000–75,000 / $210–630</option>
+                  <option>৳75,000+ / $630+</option>
+                </select>
               </div>
-            </div>
-          </div>
-        )}
 
-        {step === 3 && (
-          <div className="space-y-6 animate-in slide-in-from-right-4 fade-in duration-300">
-            <h3 className="font-heading uppercase text-xl font-bold text-[#1A1A1A]">Step 3 — Who's coming?</h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              <div className="flex flex-col space-y-2">
-                <label className="font-heading text-xs font-semibold tracking-widest text-[#4A4A4A] uppercase">Adults</label>
-                <input type="number" min="1" defaultValue="2" className="bg-white border text-[#1A1A1A] border-gray-200 px-4 py-3 rounded-md focus:outline-none focus:border-[#FF5F0F]" />
+              <div className="flex flex-col">
+                <label className={labelClasses}>Dream Details</label>
+                <textarea rows={4} className={cn(inputClasses, "rounded-3xl resize-none")} placeholder="ANY SEPCIFIC HORIZONS OR REQUIREMENTS?"></textarea>
               </div>
-              <div className="flex flex-col space-y-2">
-                <label className="font-heading text-xs font-semibold tracking-widest text-[#4A4A4A] uppercase">Children</label>
-                <input type="number" min="0" defaultValue="0" className="bg-white border text-[#1A1A1A] border-gray-200 px-4 py-3 rounded-md focus:outline-none focus:border-[#FF5F0F]" />
-              </div>
-            </div>
-            
-            <div className="flex flex-col space-y-2">
-              <label className="font-heading text-xs font-semibold tracking-widest text-[#4A4A4A] uppercase">Traveling as</label>
-              <select className="bg-white border text-[#1A1A1A] border-gray-200 px-4 py-3 rounded-md focus:outline-none focus:border-[#FF5F0F]">
-                <option>Solo</option>
-                <option>Couple</option>
-                <option>Family</option>
-                <option>Friends</option>
-                <option>Corporate Group</option>
-              </select>
-            </div>
-
-            <div className="flex flex-col space-y-2">
-              <label className="font-heading text-xs font-semibold tracking-widest text-[#4A4A4A] uppercase">Special requirements</label>
-              <textarea rows={3} placeholder="Dietary needs, accessibility, etc." className="bg-white border text-[#1A1A1A] border-gray-200 px-4 py-3 rounded-md focus:outline-none focus:border-[#FF5F0F]"></textarea>
-            </div>
-          </div>
-        )}
-
-        {step === 4 && (
-          <div className="space-y-6 animate-in slide-in-from-right-4 fade-in duration-300">
-            <h3 className="font-heading uppercase text-xl font-bold text-[#1A1A1A]">Step 4 — Budget & Style</h3>
-            <div className="flex flex-col space-y-2">
-              <label className="font-heading text-xs font-semibold tracking-widest text-[#4A4A4A] uppercase">Budget per person</label>
-              <select className="bg-white border text-[#1A1A1A] border-gray-200 px-4 py-3 rounded-md focus:outline-none focus:border-[#FF5F0F]">
-                <option>Under ৳20,000 / $170</option>
-                <option>৳20,000–50,000 / $170–420</option>
-                <option>৳50,000–100,000 / $420–840</option>
-                <option>৳100,000+ / $840+</option>
-                <option>I'd rather discuss this</option>
-              </select>
-            </div>
-
-            <div className="flex flex-col space-y-2">
-              <label className="font-heading text-xs font-semibold tracking-widest text-[#4A4A4A] uppercase">Accommodation preference</label>
-              <div className="flex flex-col gap-3 mt-2">
-                {['Local homestays & eco-lodges', 'Mid-range hotels', 'Premium/boutique', 'Mix of everything'].map((opt) => (
-                  <label key={opt} className="flex items-center space-x-3 bg-white p-3 border border-gray-200 rounded-md cursor-pointer hover:border-[#FF5F0F] transition-colors">
-                    <input type="radio" name="accommodation" className="text-[#FF5F0F] focus:ring-[#FF5F0F]" />
-                    <span className="text-[#1A1A1A] text-sm">{opt}</span>
-                  </label>
-                ))}
-              </div>
-            </div>
-
-            <div className="flex flex-col space-y-2">
-              <label className="font-heading text-xs font-semibold tracking-widest text-[#4A4A4A] uppercase">Anything else?</label>
-              <textarea rows={3} className="bg-white border text-[#1A1A1A] border-gray-200 px-4 py-3 rounded-md focus:outline-none focus:border-[#FF5F0F]"></textarea>
-            </div>
-          </div>
-        )}
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* Form Controls */}
-        <div className="flex flex-col sm:flex-row justify-between items-center gap-4 pt-6 border-t border-gray-200 mt-8">
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-6 pt-12 border-t border-black/5 mt-16">
           {step > 1 ? (
-             <button type="button" onClick={prevStep} className="w-full sm:w-auto font-heading uppercase font-bold text-sm text-[#4A4A4A] hover:text-[#1A1A1A] transition-colors py-2 text-center">
+             <button 
+              type="button" 
+              onClick={prevStep} 
+              className="w-full sm:w-auto font-heading uppercase font-black text-[10px] tracking-[0.3em] text-bynd-mist hover:text-bynd-ink transition-colors py-2 text-center"
+             >
                ← BACK
              </button>
           ) : <div className="hidden sm:block" />}
           
-          <div className="w-full sm:w-auto">
-            <ButtonPrimary 
-              type="submit" 
-              label={step === 4 ? (status === 'submitting' ? 'SUBMITTING...' : 'SUBMIT INQUIRY') : 'NEXT STEP'} 
-              disabled={status === 'submitting'}
-              fullWidth
-            />
-          </div>
+          <button
+            type="submit"
+            disabled={status === 'submitting'}
+            className="w-full sm:w-auto bg-ember text-white font-heading uppercase text-xs font-black tracking-[0.3em] px-16 py-6 rounded-full shadow-premium hover:shadow-orange-500/20 transition-all hover:scale-[1.02] active:scale-95 disabled:opacity-50"
+          >
+            {step === 4 ? (status === 'submitting' ? 'RECORDING...' : 'FINALIZE REQUEST') : 'NEXT STEP →'}
+          </button>
         </div>
       </form>
     </div>

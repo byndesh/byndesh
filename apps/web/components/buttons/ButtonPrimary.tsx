@@ -11,13 +11,14 @@ interface ButtonPrimaryProps {
   disabled?: boolean;
   type?: 'button' | 'submit' | 'reset';
   className?: string;
+  pill?: boolean;
   'aria-label'?: string;
 }
 
 const sizeMap = {
-  sm: 'px-6 py-3 text-[11px]',
-  md: 'px-8 py-3.5 text-[11px]',
-  lg: 'px-10 py-4.5 text-[13px]',
+  sm: 'px-8 py-3 text-[10px]',
+  md: 'px-12 py-4 text-[10px]',
+  lg: 'px-16 py-5 text-[11px]',
 };
 
 export default function ButtonPrimary({
@@ -30,16 +31,18 @@ export default function ButtonPrimary({
   disabled = false,
   type = 'button',
   className,
+  pill = true, // Default to pill shape for "Bynd BD" premium brand
   'aria-label': ariaLabel,
 }: ButtonPrimaryProps) {
   const base = cn(
     'inline-flex items-center justify-center gap-3',
-    'rounded-btn font-heading font-black uppercase tracking-[0.18em]',
-    'bg-ember text-bynd-parchment shadow-flame',
-    'transition-all duration-250 ease-smooth',
-    'hover:bg-ember-hover hover:shadow-flame-lg hover:-translate-y-0.5',
+    pill ? 'rounded-full' : 'rounded-sm', 
+    'font-heading font-black uppercase tracking-[0.25em]',
+    'bg-ember text-white shadow-premium',
+    'transition-all duration-300 ease-out',
+    'hover:bg-ember-hover hover:shadow-orange-500/30 hover:scale-[1.02]',
     'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-bynd-flame focus-visible:ring-offset-2',
-    'active:translate-y-0',
+    'active:scale-95',
     'disabled:opacity-50 disabled:pointer-events-none',
     sizeMap[size],
     fullWidth && 'w-full',
