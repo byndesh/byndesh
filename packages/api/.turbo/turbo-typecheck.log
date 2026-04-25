@@ -1,4 +1,4 @@
 
-> @beyndesh/api@0.0.0 typecheck G:\Antigravity\Byndesh\packages\api
+> @beyndesh/api@0.0.0 typecheck /app/packages/api
 > tsc --noEmit
 

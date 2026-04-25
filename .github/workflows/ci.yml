@@ -17,8 +17,6 @@ jobs:
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
-        with:
-          version: 9
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -29,14 +27,20 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Type check
-        run: cd apps/web && npx tsc --noEmit
+      - name: Generate database client
+        run: pnpm run db:generate
+        env:
+          DATABASE_URL: "postgresql://dummy:dummy@localhost:5432/dummy"
+
+      - name: Build & Type Check
+        run: pnpm turbo run build typecheck --filter=@beyndesh/web...
+        env:
+          NEXT_PUBLIC_SITE_URL: https://byndbd.com
+          SKIP_ENV_VALIDATION: true
+          KEYSTATIC_GITHUB_CLIENT_ID: "placeholder"
+          KEYSTATIC_GITHUB_CLIENT_SECRET: "placeholder"
+          KEYSTATIC_SECRET: "placeholder"
 
       - name: Lint
         run: pnpm run lint
         continue-on-error: true
-
-      - name: Build
-        run: cd apps/web && pnpm run build
-        env:
-          NEXT_PUBLIC_SITE_URL: https://byndbd.com
