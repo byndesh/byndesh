@@ -1,13 +1,84 @@
 
-> @beyndesh/web@0.1.0 build G:\Antigravity\Byndesh\apps\web
+> @beyndesh/web@0.1.0 build /app/apps/web
 > next build
 
+  ▲ Next.js 14.2.35
 
-> Build error occurred
-Error: Configuring Next.js via 'next.config.ts' is not supported. Please replace the file with 'next.config.js' or 'next.config.mjs'.
-    at loadConfig (G:\Antigravity\Byndesh\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\server\config.js:800:19)
-    at async Span.traceAsyncFn (G:\Antigravity\Byndesh\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\trace\trace.js:154:20)
-    at async G:\Antigravity\Byndesh\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\build\index.js:374:28
-    at async Span.traceAsyncFn (G:\Antigravity\Byndesh\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\trace\trace.js:154:20)
-    at async build (G:\Antigravity\Byndesh\node_modules\.pnpm\next@14.2.35_react-dom@18.3.1_react@18.3.1__react@18.3.1\node_modules\next\dist\build\index.js:368:9)
- ELIFECYCLE  Command failed with exit code 1.
+   Creating an optimized production build ...
+ ✓ Compiled successfully
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/53) ...
+   Generating static pages (13/53)
+   Generating static pages (26/53)
+   Generating static pages (39/53)
+ ✓ Generating static pages (53/53)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                                 Size     First Load JS
+┌ ○ /                                                       3.52 kB         142 kB
+├ ○ /_not-found                                             206 B          87.7 kB
+├ ○ /about                                                  206 B          87.7 kB
+├ ○ /about/careers                                          206 B          87.7 kB
+├ ƒ /api/auth/[...nextauth]                                 0 B                0 B
+├ ƒ /api/booking                                            0 B                0 B
+├ ƒ /api/contact                                            0 B                0 B
+├ ƒ /api/keystatic/[...params]                              0 B                0 B
+├ ƒ /api/newsletter                                         0 B                0 B
+├ ƒ /api/payment                                            0 B                0 B
+├ ƒ /api/revalidate                                         0 B                0 B
+├ ○ /booking                                                2.99 kB        99.2 kB
+├ ○ /cancellation-policy                                    206 B          87.7 kB
+├ ○ /club                                                   1.15 kB        88.7 kB
+├ ○ /contact                                                1.79 kB        96.1 kB
+├ ○ /cookie-policy                                          206 B          87.7 kB
+├ ƒ /dashboard                                              2.15 kB        98.4 kB
+├ ƒ /dashboard/bookings                                     206 B          87.7 kB
+├ ƒ /dashboard/wishlist                                     206 B          87.7 kB
+├ ○ /destinations                                           196 B          96.5 kB
+├ ● /destinations/[country]                                 2.75 kB         142 kB
+├ ○ /faq                                                    2.77 kB         133 kB
+├ ○ /forgot-password                                        206 B          87.7 kB
+├ ○ /gallery                                                899 B          88.4 kB
+├ ○ /gift-cards                                             205 B          87.7 kB
+├ ƒ /keystatic/[[...params]]                                866 kB          953 kB
+├ ○ /liability-waiver                                       206 B          87.7 kB
+├ ○ /login                                                  205 B          87.7 kB
+├ ○ /partners                                               206 B          87.7 kB
+├ ○ /privacy                                                206 B          87.7 kB
+├ ○ /register                                               206 B          87.7 kB
+├ ○ /reviews                                                516 B           139 kB
+├ ○ /robots.txt                                             0 B                0 B
+├ ○ /sitemap.xml                                            0 B                0 B
+├ ○ /stories                                                196 B          96.5 kB
+├ ● /stories/[slug]                                         2.47 kB          90 kB
+├   ├ /stories/boatmen-of-barisal
+├   ├ /stories/eating-old-dhaka
+├   ├ /stories/into-the-mangroves
+├   └ /stories/the-boatmen-of-barisal
+├ ○ /tailor-made                                            196 B          96.5 kB
+├ ○ /terms                                                  206 B          87.7 kB
+├ ○ /trips                                                  196 B          96.5 kB
+├ ● /trips/[category]                                       196 B          96.5 kB
+├   ├ /trips/river-expeditions
+├   ├ /trips/sundarbans-safaris
+├   ├ /trips/hill-tracts-trekking
+├   └ [+4 more paths]
+└ ● /trips/[category]/[slug]                                2.48 kB        98.7 kB
+    ├ /trips/dhaka-culture/48-hours-in-old-dhaka
+    ├ /trips/river-expeditions/floating-markets-delta-life
+    ├ /trips/hill-tracts-trekking/keokradong-peak-trek
+    └ [+3 more paths]
++ First Load JS shared by all                               87.5 kB
+  ├ chunks/4246-62efeb841fe40996.js                         31.9 kB
+  ├ chunks/7538502d-13a498cc5e95c350.js                     53.6 kB
+  └ other shared chunks (total)                             1.97 kB
+
+
+ƒ Middleware                                                123 kB
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses getStaticProps)
+ƒ  (Dynamic)  server-rendered on demand
+
